@@ -8,11 +8,21 @@ namespace MO.DA.FORM.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IConfiguration _configuration;
+
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
+        [HttpGet]
+        public IActionResult PrintInf()
+        {
+            var admin_name = _configuration.GetSection("Admin:Name");
+            int test = 666;
+            return View(test);
+        }
         public IActionResult Index()
         {
             return View();
