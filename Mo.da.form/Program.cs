@@ -4,7 +4,7 @@ using MO.DA.FORM.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(opt =>
-        opt.UseNpgsql(builder.Configuration.GetConnectionString("Host=localhost;Port=5433;Database=usersdb;Username=postgres;Password=здесь_указывается_пароль_от_postgres")));
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
