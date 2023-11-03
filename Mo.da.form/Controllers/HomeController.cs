@@ -71,5 +71,16 @@ namespace MO.DA.FORM.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    }
+
+        [HttpGet]
+        public IActionResult Teacher()
+        {
+            return View("~/Views/Home/Teacher.cshtml");
+        }
+         public IActionResult Starosta_and_zam()
+        {
+            return View("~/Views/Home/Starosta_and_zam.cshtml");
+        }
+
+	}
 }
