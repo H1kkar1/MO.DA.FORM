@@ -5,9 +5,7 @@
 }
 <link rel="StyleSheet" href="~/css/auth.css" />
 <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-<h1>Create</h1>
 
-<h4>User</h4>
 <hr />
 <body>
 	<div id="content-container">
@@ -25,8 +23,9 @@
 			<div id="___" nameid="">
 				<div nameid="" id="_bg______ek1"></div>
 				<div nameid="Rectangle 2" id="rectangle_2"></div>
-				<div nameid=" " id="_______________">
-					<span class="char">g</span> <span class="char">%D0%BD%D0%B8%D0%BA%D0%BD%D0%B5%D0%B9%D0%BC</span>
+				<label asp-for="name" class="control-label"></label>
+				<input asp-for="name" class="form-control" />
+				<span asp-validation-for="name" class="text-danger"></span>
 				</div>
 
 			</div>
@@ -34,27 +33,27 @@
 			<div id="_______ek2" nameid="">
 				<div nameid="" id="_bg_________ek3"></div>
 				<div nameid="Rectangle 2" id="rectangle_2_ek1"></div>
-				<div nameid=" " id="______________">
-					<span class="char">%D0%92%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5 </span> <span class="char">%D0%BF%D0%B0%D1%80%D0%BE%D0%BB%D1%8C</span>
-				</div>
+				<label asp-for="password" class="control-label"></label>
+				<input asp-for="password" class="form-control" />
+				<span asp-validation-for="password" class="text-danger"></span>
+			</div>
 
 			</div>
 
 			<div id="_______ek4" nameid="">
 				<div nameid="" id="_bg_________ek5"></div>
 				<div nameid="Rectangle 2" id="rectangle_2_ek2"></div>
-				<div nameid="  " id="____________________">
-					<span class="char">%D0%92%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5 </span> <span class="char">%D0%BD%D0%BE%D0%BC%D0%B5%D1%80 </span> <span class="char">%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%8B</span>
-				</div>
-
+				<label asp-for="email" class="control-label"></label>
+				<input asp-for="email" class="form-control" />
+				<span asp-validation-for="email" class="text-danger"></span>
 			</div>
 
 			<div id="_____" nameid="">
 				<div nameid="" id="_bg________ek1"></div>
 				<div nameid="Rectangle 2" id="rectangle_2_ek3"></div>
-				<div nameid=" e-mail" id="________e_mail">
-					<span class="char">%D0%92%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5 </span> e-mail
-				</div>
+				<label asp-for="group" class="control-label"></label>
+				<input asp-for="group" class="form-control" />
+				<span asp-validation-for="group" class="text-danger"></span>
 
 			</div>
 

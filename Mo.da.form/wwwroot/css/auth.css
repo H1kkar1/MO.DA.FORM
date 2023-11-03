@@ -14,9 +14,6 @@ div {
 #content-container {
     display: block;
     position: relative;
-    width: 1600px;
-    width: 1600px;
-    height: 1127px;
     overflow: hidden;
     display: block;
     margin-left: auto;
@@ -99,7 +96,7 @@ div {
 }
 
 
-#_______________ {
+#form-control {
     top: 0px;
     left: -5px;
     width: 635px;
