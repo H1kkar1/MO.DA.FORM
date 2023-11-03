@@ -32,3 +32,7 @@
 - Раздел с ссылками на другие платформы вуза (СДО, ЛК, группу вк, телеграмм)
 
 - Раздел с расписанием пар и сессий
+
+#### Ссылка на прототип сайта в Figma
+
+https://www.figma.com/file/lyUjUfKGq5XsrzLTqRVGLq/Untitled?type=design&node-id=0%3A1&mode=design&t=C8duA9As94v1BdWM-1
