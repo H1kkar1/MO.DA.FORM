@@ -1,6 +1,5 @@
 html {
     font-size: 14px;
-    background-color: #2C2C2C;
 }
 
 @media (min-width: 768px) {
@@ -14,24 +13,10 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+body-bg {
+    background-color: #2c2c2c;
 }
 
-.heg-nav {
-    margin-top: 300px;
-}
-
-.nav_item {
-    
-    color: #FFFFFF;
-}
-.nav-link text-dark {
-    border-radius: 30px;
-    overflow: hidden;
-    font-family: Inter;
-    font-size: 25px;
-    line-height: 63.5px;
-    text-decoration: underline;
-    text-align: center;
+li {
+    list-style-type: none;
 }

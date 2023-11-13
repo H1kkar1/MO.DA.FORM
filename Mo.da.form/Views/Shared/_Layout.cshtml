@@ -5,45 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MO.DA.FORM</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MO.DA.FORM.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/MO.DA.FORM.styles.css" asp-append-version="true"/>
+    <script src="https://kit.fontawesome.com/3ba4526930.js" crossorigin="anonymous"></script>
     <img src="~/img/logo.png" />
 </head>
-<body>
-    <header class="hed-nav">
-        <nav>
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">                          
-                            <div style="background: rgba(73.51,73.51,73.51,1); border-radius: 30px; width: 200px; height: 40px;">
-                                <a asp-area="" asp-controller="Home" asp-action="Index" style=" color: #FFFFFF;overflow: hidden; font-family: Inter; font-size: 25px; line-height: 63.5px; text-decoration: none;text-align: center;">Home</a>
-                            </div>                     
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+
+
+
+<body style="background-color: #2c2c2c;">
+    <div style="margin-top: 30px;">
+        <header>
+            <ul class="d-flex justify-content-around top-nav-bar">
+              
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
+                        <div >Посмотреть расписание</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
+                        <div>Перейти в СДО</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
+                        <div>Расписание занятий</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
+                        <div>Расписание сессии</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
+                        <div>Личный кабинет</div>
+                    </a>
+                </li>
+            </ul>
+        </header>
+    </div>
+
+
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" style="margin-top:300px;">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - MO.DA.FORM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="text-center">
+        <!-- Grid container -->
+        <div class="container p-4 lite" style="border-radius: 20px 20px 0 0;">
+            <!--Grid row-->
+            <div class="row lite" >
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 lite">
+                    <h5 class="text-uppercase">Цели которые мы приследуем</h5>
+                    <p>
+                        Мы хотим сделать WEB-приложения для всшего же удобства так что пользуйтесь на здоровье.
+                    </p>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 lite">
+                    <h5 class="text-uppercase">Удачи в освоении)</h5>
+                    <p>
+                        По всем вопросам обшашваться по контакам указанным ниже.
+                    </p>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
         </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3 lite" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright: r<a class="text-lite " href="https://mdbootstrap.com/"><p class="gain-center">MDBootstrap.com</p></a>
+            <ul class="social-icons-1">
+                <li><a href="#"><i class="fa fa-vk"></i> </a></li>
+                <li><a href="#"><i class="fa fa-telegram"></i></a></li>
+            </ul>
+        </div>
+       
+        <!-- Copyright -->
     </footer>
+ 
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

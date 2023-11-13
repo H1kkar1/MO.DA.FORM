@@ -37,34 +37,6 @@ namespace MO.DA.FORM.Controllers
             return View();
         }
         
-        [HttpPost]
-        public IActionResult Authorization(string name, string email, string passowrd,string group, string leader)
-        {
-            using (DataContext db = _dbContext)
-            {
-                bool led;
-                MD5 md5 = MD5.Create();
-                byte[] passBytes = Encoding.ASCII.GetBytes(passowrd);// преобразуем строку в массив байтов
-                byte[] hash = md5.ComputeHash(passBytes); //получаем хэш в виде массива байтов
-                string heshpasswd = Convert.ToHexString(hash); // преобразуем хеш в строку
-                if (leader == "да" || leader == "Да")
-                    led = true;
-                else
-                    led = false;
-                User usr = new User 
-                { 
-                    id = Guid.NewGuid(), 
-                    name = name, 
-                    email = email, 
-                    password = heshpasswd, 
-                    group = group, 
-                    leader = led
-                };
-                db.User.Add(usr);
-                db.SaveChanges();
-            }
-            return View("Sucsess!");
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

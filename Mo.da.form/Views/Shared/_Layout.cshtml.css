@@ -1,6 +1,47 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿/*настройка футра*/
+html,
+body {
+    height: 100%;
+}
 
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    color: #fff;
+}
+
+
+.top-nav-bar li {
+    background: rgba(73.51,73.51,73.51,1);
+    border-radius: 30px;
+    width: 300px;
+    height: 50px;
+    list-style-type: none;
+    float: left;
+    margin: 0 10px;
+    transition: 0.3s; /* Время эффекта */
+    text-align: center;
+    border: 3px solid #d6d6d6;
+}
+    .top-nav-bar li:hover {
+        transform: scale(1.1);
+    }
+    /*Ховер для ссылки*/
+    .gain-center {
+        transition: 1s; /* Время эффекта */
+        text-align: center;
+    }
+
+.gain-center:hover {
+    transform: scale(1.2); /* Увеличиваем масштаб */
+}
+
+
+
+/*стоковые стили */
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -39,10 +80,61 @@ button.accept-policy {
   line-height: inherit;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+body-bg{
+    background: #2c2c2c;
 }
+
+
+
+/*иконки соц. сетей*/
+.social-icons-1 {
+    padding: 0;
+    list-style: none;
+    margin-left: 65%;
+}
+
+    .social-icons-1 li {
+        display: inline-block;
+        position: relative;
+        font-size: 24px;
+    }
+
+    .social-icons-1 i,
+    .social-icons-1 img {
+        color: #010101;
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        transition: all 0.3s ease-out;
+    }
+
+    .social-icons-1 a {
+        display: inline-block;
+    }
+
+        .social-icons-1 a:before {
+            transform: scale(1);
+            content: "";
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            display: block;
+            background: linear-gradient(45deg, #ababab,#d6d6d6 );
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-out;
+        }
+
+        .social-icons-1 a:hover:before {
+            transform: scale(0);
+            transition: all 0.3s ease-in;
+        }
+
+        .social-icons-1 a:hover i,
+        .social-icons-1 a:hover img {
+            transform: scale(1.8);
+            color: #fff;
+            transition: all 0.3s ease-in;
+        }

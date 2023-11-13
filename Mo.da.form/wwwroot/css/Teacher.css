@@ -1,55 +1,32 @@
-﻿/*
-	@name home_________
-*/
-/* Only edit this if you know what you are doing! */
+﻿
 
-span{
 
-}
-/* Only edit this if you know what you are doing! */
-img {
-    position: absolute;
-    display: block;
-    margin: 0px;
-    border: none;
-    padding: 0px;
-}
-
-/* Only edit this if you know what you are doing! */
-div {
-    position: absolute;
-}
 
 #content-container {
     display: block;
-    position: relative;
     width: 1600px;
     width: 1600px;
     height: 1200px;
     overflow: hidden;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #_bg__home_________ {
-    top: 0px;
-    left: 0px;
+   
     width: 1600px;
     height: 1200px;
     background: rgba(43.76,43.76,43.76,1);
 }
 
 #__________ {
-    top: 493px;
-    left: 581px;
+   
     width: 980px;
     height: 218px;
 }
 
 #_bg_____________ek1 {
     top: -493px;
-    left: -581px;
+ 
     width: 980px;
     height: 218px;
     background: #;
@@ -57,14 +34,14 @@ div {
 
 #___________ek2 {
     top: 45px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 172.58px;
 }
 
 #_bg_____________ek3 {
     top: -538px;
-    left: -581px;
+    : -581px;
     width: 980px;
     height: 172.58px;
     background: #;
@@ -73,7 +50,7 @@ div {
 
 #rectangle_2 {
     top: -2px;
-    left: -2px;
+    : -2px;
     width: 980px;
     height: 172.58px;
     border: 2px solid #000000;
@@ -83,7 +60,7 @@ div {
 
 #_____________4_____ {
     top: 56px;
-    left: 16px;
+    : 16px;
     width: 948px;
     height: 30.21px;
     overflow: hidden;
@@ -96,7 +73,7 @@ div {
 
 #_____________________ {
     top: 122px;
-    left: 17px;
+    : 17px;
     width: 948px;
     height: 30.21px;
     overflow: hidden;
@@ -109,7 +86,7 @@ div {
 
 #_________ {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 46.33px;
 
@@ -117,7 +94,7 @@ div {
 
 #_bg____________ek1 {
     top: -493px;
-    left: -581px;
+    : -581px;
     width: 980px;
     height: 46.33px;
     background: #;
@@ -126,7 +103,7 @@ div {
 
 #__________ek2 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 45.42px;
 }
@@ -134,7 +111,7 @@ div {
 
 #____________________ {
     top: 11px;
-    left: -2px;
+    : -2px;
     width: 986px;
     height: 42.92px;
     overflow: hidden;
@@ -146,14 +123,14 @@ div {
 
 #______ {
     top: 752px;
-    left: 580px;
+    : 580px;
     width: 981px;
     height: 419px;
 }
 
 #_bg_________ek1 {
     top: -752px;
-    left: -580px;
+    : -580px;
     width: 981px;
     height: 419px;
     background: #;
@@ -161,14 +138,14 @@ div {
 
 #_______________ {
     top: 345px;
-    left: 1px;
+    : 1px;
     width: 980px;
     height: 74px;
 }
 
 #_bg__________________ek1 {
     top: -1097px;
-    left: -581px;
+    : -581px;
     width: 980px;
     height: 74px;
     background: #;
@@ -177,7 +154,7 @@ div {
 
 #rectangle_2_ek1 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 74px;
     -ms-border-radius: 30px;
@@ -191,7 +168,7 @@ div {
 
 #_________________________ {
     top: 11px;
-    left: -7px;
+    : -7px;
     width: 987px;
     height: 75px;
     overflow: hidden;
@@ -203,14 +180,14 @@ div {
 
 #____________ {
     top: 230px;
-    left: 1px;
+    : 1px;
     width: 980px;
     height: 74px;
 }
 
 #_bg_______________ek1 {
     top: -982px;
-    left: -581px;
+    : -581px;
     width: 980px;
     height: 74px;
     background: #;
@@ -219,7 +196,7 @@ div {
 
 #rectangle_2_ek2 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 74px;
     -ms-border-radius: 30px;
@@ -233,7 +210,7 @@ div {
 
 #_____________________________________ {
     top: 11px;
-    left: -7px;
+    : -7px;
     width: 987px;
     height: 75px;
     overflow: hidden;
@@ -245,14 +222,14 @@ div {
 
 #______________ {
     top: 115px;
-    left: 1px;
+    : 1px;
     width: 980px;
     height: 74px;
 }
 
 #_bg_________________ek1 {
     top: -867px;
-    left: -581px;
+    : -581px;
     width: 980px;
     height: 74px;
     background: #;
@@ -261,7 +238,7 @@ div {
 
 #rectangle_2_ek3 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 74px;
     -ms-border-radius: 30px;
@@ -275,7 +252,7 @@ div {
 
 #____________________________ {
     top: 11px;
-    left: -7px;
+    : -7px;
     width: 987px;
     height: 75px;
     overflow: hidden;
@@ -287,14 +264,14 @@ div {
 
 #_______________ek2 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 74px;
 }
 
 #_bg_________________ek3 {
     top: -752px;
-    left: -580px;
+    : -580px;
     width: 980px;
     height: 74px;
     background: #;
@@ -303,7 +280,7 @@ div {
 
 #rectangle_2_ek4 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 980px;
     height: 74px;
     -ms-border-radius: 30px;
@@ -317,7 +294,7 @@ div {
 
 #_____________________ek1 {
     top: 11px;
-    left: -7px;
+    : -7px;
     width: 987px;
     height: 75px;
     overflow: hidden;
@@ -330,7 +307,7 @@ div {
 
 #_________________________________________ {
     top: 322px;
-    left: 952px;
+    : 952px;
     width: 607px;
     height: 124px;
     overflow: hidden;
@@ -343,14 +320,14 @@ div {
 
 #_____________ek2 {
     top: 251px;
-    left: 49px;
+    : 49px;
     width: 501px;
     height: 920px;
 }
 
 #_bg_______________ek3 {
     top: -251px;
-    left: -49px;
+    : -49px;
     width: 501px;
     height: 920px;
     background: #;
@@ -359,21 +336,21 @@ div {
 
 #________________ek2 {
     top: 0px;
-    left: 1px;
+    : 1px;
     width: 500px;
     height: 920px;
 }
 
 #________3 {
     top: 670px;
-    left: 0px;
+    : 0px;
     width: 500px;
     height: 250px;
 }
 
 #_bg__________3_ek1 {
     top: -921px;
-    left: -49px;
+    : -49px;
     width: 500px;
     height: 250px;
     background: #;
@@ -382,7 +359,7 @@ div {
 
 #rectangle_4 {
     top: -1px;
-    left: -1px;
+    : -1px;
     width: 500px;
     height: 250px;
     border: 1px solid #000000;
@@ -392,7 +369,7 @@ div {
 
 #__________________221_371___________________________ {
     top: 92px;
-    left: -3px;
+    : -3px;
     width: 507px;
     height: 109.5px;
     overflow: hidden;
@@ -404,14 +381,14 @@ div {
 
 #________2 {
     top: 300px;
-    left: 1px;
+    : 1px;
     width: 500px;
     height: 370px;
 }
 
 #_bg__________2_ek1 {
     top: -551px;
-    left: -50px;
+    : -50px;
     width: 500px;
     height: 370px;
     background: #;
@@ -420,7 +397,7 @@ div {
 
 #rectangle_3 {
     top: -1px;
-    left: -1px;
+    : -1px;
     width: 500px;
     height: 370px;
     border: 1px solid #000000;
@@ -430,7 +407,7 @@ div {
 
 #____________________________________ {
     top: 136px;
-    left: -4px;
+    : -4px;
     width: 507px;
     height: 109.5px;
     overflow: hidden;
@@ -442,14 +419,14 @@ div {
 
 #________1 {
     top: 50px;
-    left: 1px;
+    : 1px;
     width: 500px;
     height: 250px;
 }
 
 #_bg__________1_ek1 {
     top: -301px;
-    left: -50px;
+    : -50px;
     width: 500px;
     height: 250px;
     background: #;
@@ -458,7 +435,7 @@ div {
 
 #rectangle_2_ek5 {
     top: -1px;
-    left: -1px;
+    : -1px;
     width: 500px;
     height: 250px;
     border: 1px solid #000000;
@@ -468,7 +445,7 @@ div {
 
 #__________________________________________1 {
     top: 74px;
-    left: -4px;
+    : -4px;
     width: 507px;
     height: 109.5px;
     overflow: hidden;
@@ -480,14 +457,14 @@ div {
 
 #__________ek3 {
     top: 0px;
-    left: 1px;
+    : 1px;
     width: 500px;
     height: 51px;
 }
 
 #_bg____________ek4 {
     top: -251px;
-    left: -50px;
+    : -50px;
     width: 500px;
     height: 51px;
     background: #;
@@ -496,7 +473,7 @@ div {
 
 #__________ek5 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 500px;
     height: 50px;
 }
@@ -504,7 +481,7 @@ div {
 
 #_______ {
     top: 12px;
-    left: -3px;
+    : -3px;
     width: 507px;
     height: 46.5px;
     overflow: hidden;
@@ -516,14 +493,14 @@ div {
 
 #_______ek2 {
     top: 149px;
-    left: 320px;
+    : 320px;
     width: 1237px;
     height: 65px;
 }
 
 #_bg_________ek3 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 1237px;
     height: 65px;
     background: #;
@@ -531,14 +508,14 @@ div {
 
 #________ek1 {
     top: 2px;
-    left: 272px;
+    : 272px;
     width: 332px;
     height: 63px;
 }
 
 #_bg__________ek2 {
     top: -2px;
-    left: -272px;
+    : -272px;
     width: 332px;
     height: 63px;
     background: #;
@@ -547,7 +524,7 @@ div {
 
 #rectangle_2_ek6 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 332px;
     height: 63px;
     -ms-border-radius: 30px;
@@ -561,7 +538,7 @@ div {
 
 #___________________ {
     top: 0px;
-    left: -4px;
+    : -4px;
     width: 340px;
     height: 70.5px;
     overflow: hidden;
@@ -575,14 +552,14 @@ div {
 
 #_______ek4 {
     top: 2px;
-    left: 627px;
+    : 627px;
     width: 332px;
     height: 63px;
 }
 
 #_bg_________ek5 {
     top: -2px;
-    left: -627px;
+    : -627px;
     width: 332px;
     height: 63px;
     background: #;
@@ -591,7 +568,7 @@ div {
 
 #rectangle_2_ek7 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 332px;
     height: 63px;
     -ms-border-radius: 30px;
@@ -605,7 +582,7 @@ div {
 
 #__________________ {
     top: 0px;
-    left: -4px;
+    : -4px;
     width: 340px;
     height: 68.5px;
     overflow: hidden;
@@ -620,7 +597,7 @@ div {
 
 #_bg_______ek1 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 248px;
     height: 63px;
     background: #;
@@ -629,7 +606,7 @@ div {
 
 #rectangle_2_ek8 {
     top: 2px;
-    left: 0px;
+    : 0px;
     width: 248px;
     height: 63px;
     -ms-border-radius: 30px;
@@ -643,7 +620,7 @@ div {
 
 #_____________ {
     top: 2px;
-    left: -4px;
+    : -4px;
     width: 256px;
     height: 70.5px;
     overflow: hidden;
@@ -658,7 +635,7 @@ div {
 
 #_bg______ek1 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 256px;
     height: 63px;
     background: #;
@@ -667,7 +644,7 @@ div {
 
 #rectangle_2_ek9 {
     top: 0px;
-    left: 981px;
+    : 981px;
     width: 256px;
     height: 63px;
     -ms-border-radius: 30px;
@@ -681,7 +658,7 @@ div {
 
 #_______________ek4 {
     top: 2px;
-    left: 977px;
+    : 977px;
     width: 264px;
     height: 68.5px;
     overflow: hidden;
@@ -695,14 +672,14 @@ div {
 
 #_____ {
     top: 149px;
-    left: 49px;
+    : 49px;
     width: 245px;
     height: 63.06px;
 }
 
 #_bg________ek1 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 245px;
     height: 63.06px;
     background: #;
@@ -711,7 +688,7 @@ div {
 
 #rectangle_1 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 245px;
     height: 63.06px;
     -ms-border-radius: 30px;
@@ -725,7 +702,7 @@ div {
 
 #__________________ek1 {
     top: 0px;
-    left: -4px;
+    : -4px;
     width: 253px;
     height: 70.5px;
     overflow: hidden;
@@ -738,14 +715,14 @@ div {
 
 #top_sh_1 {
     top: 34px;
-    left: 56px;
+    : 56px;
     width: 303px;
     height: 82px;
 }
 
 #_bg__top_sh_1_ek1 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 303px;
     height: 82px;
     background: #;
@@ -754,7 +731,7 @@ div {
 
 #top_sh_1_ek2 {
     top: 0px;
-    left: 0px;
+    : 0px;
     width: 303px;
     height: 82px;
 }
