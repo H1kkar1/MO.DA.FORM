@@ -53,6 +53,9 @@ namespace MO.DA.FORM.Controllers
         {
             return View("~/Views/Home/Starosta_and_zam.cshtml");
         }
-
-	}
+        public IActionResult Create_post()
+        {
+            return View("~/Views/Posts/Create_post.cshtml");
+        }
+    }
 }
