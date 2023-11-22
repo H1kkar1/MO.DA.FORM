@@ -9,12 +9,12 @@ using System;
 
 namespace MO.DA.FORM.Controllers
 {
-    public class HomeController : Controller
+    public class PostsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PostsController> _logger;
         private readonly IConfiguration _configuration;
         private readonly DataContext _dbContext;
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, DataContext dataContext)
+        public PostsController(ILogger<PostsController> logger, IConfiguration configuration, DataContext dataContext)
         {
             _logger = logger;
             _configuration = configuration;
@@ -45,21 +45,21 @@ namespace MO.DA.FORM.Controllers
         }
 
         [HttpGet]
-        public IActionResult Teacher()
+        public IActionResult Create_post()
         {
-            return View("~/Views/Home/Teacher.cshtml");
+            return View("~/Views/Posts/Create_post.cshtml");
         }
-         public IActionResult Starosta_and_zam()
+        public IActionResult Create_answer_for_quest()
         {
-            return View("~/Views/Home/Starosta_and_zam.cshtml");
+            return View("~/Views/Posts/Create_answer_for_quest.cshtml");
         }
-        public IActionResult Student()
+        public IActionResult Create_homework()
         {
-            return View("~/Views/Home/Student.cshtml");
+            return View("~/Views/Posts/Create_homework.cshtml");
         }
-        public IActionResult Inf_of_pepod()
+        public IActionResult Create_treb()
         {
-            return View("~/Views/Home/Inf_of_prepod.cshtml");
+            return View("~/Views/Posts/Create_treb.cshtml");
         }
     }
 }
