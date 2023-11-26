@@ -6,7 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MO.DA.FORM.Models;
-using System.IO;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Runtime.InteropServices;
+using System.Text;
+using System;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -43,6 +47,9 @@ namespace MO.DA.FORM.Controllers
             }
 
             return View(post);
+            _logger = logger;
+            _configuration = configuration;
+            _dbContext = dataContext;
         }
 
         // GET: Posts/Create
@@ -87,9 +94,9 @@ namespace MO.DA.FORM.Controllers
 
             var post = await _context.Post.FindAsync(id);
             if (post == null)
-            {
+        {
                 return NotFound();
-            }
+        }
             return View(post);
         }
 
@@ -103,8 +110,8 @@ namespace MO.DA.FORM.Controllers
             if (id != post.post_id)
             {
                 return NotFound();
-            }
-
+        }
+        
             if (ModelState.IsValid)
             {
                 try
@@ -132,14 +139,14 @@ namespace MO.DA.FORM.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Post == null)
-            {
+        {
                 return NotFound();
-            }
+        }
 
             var post = await _context.Post
                 .FirstOrDefaultAsync(m => m.post_id == id);
             if (post == null)
-            {
+        {
                 return NotFound();
             }
 
@@ -152,12 +159,12 @@ namespace MO.DA.FORM.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Post == null)
-            {
+        {
                 return Problem("Entity set 'DataContext.Post'  is null.");
-            }
+        }
             var post = await _context.Post.FindAsync(id);
             if (post != null)
-            {
+        {
                 _context.Post.Remove(post);
             }
 

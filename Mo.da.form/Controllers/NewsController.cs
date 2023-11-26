@@ -9,12 +9,12 @@ using System;
 
 namespace MO.DA.FORM.Controllers
 {
-    public class HomeController : Controller
+    public class NewsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<NewsController> _logger;
         private readonly IConfiguration _configuration;
         private readonly DataContext _dbContext;
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, DataContext dataContext)
+        public NewsController(ILogger<NewsController> logger, IConfiguration configuration, DataContext dataContext)
         {
             _logger = logger;
             _configuration = configuration;
@@ -45,21 +45,13 @@ namespace MO.DA.FORM.Controllers
         }
 
         [HttpGet]
-        public IActionResult Teacher()
+        public IActionResult List_of_news()
         {
-            return View("~/Views/Home/Teacher.cshtml");
+            return View("~/Views/News/List_of_news.cshtml");
         }
-         public IActionResult Starosta_and_zam()
+        public IActionResult New()
         {
-            return View("~/Views/Home/Starosta_and_zam.cshtml");
-        }
-        public IActionResult Student()
-        {
-            return View("~/Views/Home/Student.cshtml");
-        }
-        public IActionResult Inf_of_pepod()
-        {
-            return View("~/Views/Home/Inf_of_prepod.cshtml");
+            return View("~/Views/News/New.cshtml");
         }
     }
 }

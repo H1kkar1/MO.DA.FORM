@@ -9,12 +9,12 @@ using System;
 
 namespace MO.DA.FORM.Controllers
 {
-    public class HomeController : Controller
+    public class HomeworkController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeworkController> _logger;
         private readonly IConfiguration _configuration;
         private readonly DataContext _dbContext;
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, DataContext dataContext)
+        public HomeworkController(ILogger<HomeworkController> logger, IConfiguration configuration, DataContext dataContext)
         {
             _logger = logger;
             _configuration = configuration;
@@ -45,21 +45,29 @@ namespace MO.DA.FORM.Controllers
         }
 
         [HttpGet]
-        public IActionResult Teacher()
+        public IActionResult Homework_daily()
         {
-            return View("~/Views/Home/Teacher.cshtml");
+            return View("~/Views/Homework/Homework_daily.cshtml");
         }
-         public IActionResult Starosta_and_zam()
+        public IActionResult Homework_semestr()
         {
-            return View("~/Views/Home/Starosta_and_zam.cshtml");
+            return View("~/Views/Homework/Homework_semestr.cshtml");
         }
-        public IActionResult Student()
+        public IActionResult Deadline_daily()
         {
-            return View("~/Views/Home/Student.cshtml");
+            return View("~/Views/Homework/Deadline_daily.cshtml");
         }
-        public IActionResult Inf_of_pepod()
+        public IActionResult Deadline_semestr()
         {
-            return View("~/Views/Home/Inf_of_prepod.cshtml");
+            return View("~/Views/Homework/Deadline_semestr.cshtml");
+        }
+        public IActionResult Homework()
+        {
+            return View("~/Views/Homework/Homework.cshtml");
+        }
+        public IActionResult List_of_quest()
+        {
+            return View("~/Views/Homework/List_of_quest.cshtml");
         }
     }
 }
