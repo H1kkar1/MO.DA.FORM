@@ -4,13 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>User</h4>
+<link rel="stylesheet" href="~/css/Form.css"/>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <h1 style="margin: 50px 530px;">Изменение информации</h1>
+        <form asp-action="Edit" class="reg_form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">

@@ -4,12 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<link rel="stylesheet" href="~/css/Users_Create.css" />
+<link rel="stylesheet" href="~/css/Form.css"/>
 <div class="row">
     <div class="col-md-4">
+        <h1 style="margin: 50px 530px;">Регистарация</h1>
         <form asp-action="Create" class="reg_form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="id"/>
             <div class="form-group">
                 <label asp-for="name" class="control-label"></label>
                 <input asp-for="name" class="form-control" />

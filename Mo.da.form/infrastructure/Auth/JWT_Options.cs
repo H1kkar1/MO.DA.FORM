@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace MO.DA.FORM.Auth
+namespace MO.DA.FORM.infrastructure.Auth
 {
     public class JWT_Options
     {
