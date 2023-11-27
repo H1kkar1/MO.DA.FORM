@@ -1,0 +1,34 @@
+﻿@model MO.DA.FORM.Models.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<link rel="stylesheet" href="~/css/Form.css" />
+<div class="row">
+    <div class="col-md-4">
+        <h1 style="margin: 50px 530px;">Login</h1>
+        <form asp-action="Login" class="reg_form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="leader" /> @Html.DisplayNameFor(model => model.leader)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

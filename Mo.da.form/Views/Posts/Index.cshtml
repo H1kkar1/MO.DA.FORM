@@ -4,50 +4,35 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/css/Post.css"/>
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.text)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.datetime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.file)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.datetime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.file)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.post_id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.post_id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.post_id">Delete</a>
-            </td>
-        </tr>
+
+@foreach (var item in Model)
+{
+    <div class="post">
+
+        <h1>
+            @Html.DisplayFor(modelItem => item.type)
+        </h1>
+        <p>
+            @Html.DisplayFor(modelItem => item.text)
+        </p>
+        <div>
+            @Html.Raw("<img style='width:380px; height:360px;' src=\"data:image/jpeg;base64,"
+        + Convert.ToBase64String(item.file) + "\" />")
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@item.post_id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.post_id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.post_id">Delete</a>
+        </div>
+        <p id="datetime">
+            Дата: @($"{item.datetime.Day}.{item.datetime.Month}.{item.datetime.Year}")
+        </p>
+
+    </div>
 }
-    </tbody>
-</table>

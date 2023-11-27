@@ -47,9 +47,6 @@ namespace MO.DA.FORM.Controllers
             }
 
             return View(post);
-            _logger = logger;
-            _configuration = configuration;
-            _dbContext = dataContext;
         }
 
         // GET: Posts/Create
@@ -65,8 +62,9 @@ namespace MO.DA.FORM.Controllers
         {
             if (ModelState.IsValid)
             {
-                Post post = new Post() { post_id = pwm.post_id, datetime = pwm.datetime, text = pwm.text, type = pwm.type};
-                if(pwm.file != null)
+                Post post = new Post() { post_id = pwm.post_id, text = pwm.text, type = pwm.type};
+                post.datetime = pwm.datetime;
+                if (pwm.file != null)
                 {
                     byte[] imageData = null;
                     // считываем переданный файл в массив байтов
