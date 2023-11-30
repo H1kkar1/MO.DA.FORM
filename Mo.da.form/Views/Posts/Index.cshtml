@@ -22,8 +22,14 @@
             @Html.DisplayFor(modelItem => item.text)
         </p>
         <div>
-            @Html.Raw("<img style='width:380px; height:360px;' src=\"data:image/jpeg;base64,"
-        + Convert.ToBase64String(item.file) + "\" />")
+            @{
+                if (item.file != null) { @Html.Raw("<img style='width:380px; height:360px;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.file) + "\" />"); }
+                else
+                {
+                    <p>кратинки нет и не будет </p>
+                }
+                    
+            }
         </div>
         <div>
             <a asp-action="Edit" asp-route-id="@item.post_id">Edit</a> |
@@ -31,7 +37,7 @@
             <a asp-action="Delete" asp-route-id="@item.post_id">Delete</a>
         </div>
         <p id="datetime">
-            Дата: @($"{item.datetime.Day}.{item.datetime.Month}.{item.datetime.Year}")
+            Дата: @Html.DisplayFor(modelItem => item.datetime)<!--($"{item.datetime.Day}.{item.datetime.Month}.{item.datetime.Year}")-->
         </p>
 
     </div>

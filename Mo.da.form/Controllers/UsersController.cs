@@ -21,6 +21,15 @@ namespace MO.DA.FORM.Controllers
             _context = context;
         }
 
+        public string get_hash_paswd(string password)
+        {
+            byte[] passBytes = Encoding.ASCII.GetBytes(password);// преобразуем строку в массив байтов
+            byte[] hash = md5.ComputeHash(passBytes); //получаем хэш в виде массива байтов
+            string heshpasswd = Convert.ToHexString(hash); // преобразуем хеш в строку
+
+            return heshpasswd;
+        }
+      
         // GET: Users
         public async Task<IActionResult> Index()
         {
@@ -59,12 +68,8 @@ namespace MO.DA.FORM.Controllers
         public async Task<IActionResult> Create([Bind("id,name,email,password,group,leader")] User user)
         {
             if (ModelState.IsValid)
-            {
-                byte[] passBytes = Encoding.ASCII.GetBytes(user.password);// преобразуем строку в массив байтов
-                byte[] hash = md5.ComputeHash(passBytes); //получаем хэш в виде массива байтов
-                string heshpasswd = Convert.ToHexString(hash); // преобразуем хеш в строку
-                user.id = Guid.NewGuid();
-                user.password = heshpasswd;
+            {                
+                user.password = get_hash_paswd(user.password);
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -162,7 +167,7 @@ namespace MO.DA.FORM.Controllers
         {
           return (_context.User?.Any(e => e.id == id)).GetValueOrDefault();
         }
-
+        //GET: Users/Login
         [HttpGet]
         public IActionResult Login()
         {
@@ -175,7 +180,7 @@ namespace MO.DA.FORM.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.User.FirstOrDefaultAsync(u => u.email == model.email && u.password == model.password);
+                User user = await _context.User.FirstOrDefaultAsync(u => u.email == model.email && u.password == get_hash_paswd(model.password));
                 if (user != null)
                 {
                     await Authenticate(model.email, model.leader.ToString()); // аутентификация
@@ -186,6 +191,7 @@ namespace MO.DA.FORM.Controllers
             }
             return View(model);
         }
+        [ValidateAntiForgeryToken]
         private async Task Authenticate(string userName, string leader)
         {
             // создаем один claim

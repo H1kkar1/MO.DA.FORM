@@ -62,8 +62,8 @@ namespace MO.DA.FORM.Controllers
         {
             if (ModelState.IsValid)
             {
-                Post post = new Post() { post_id = pwm.post_id, text = pwm.text, type = pwm.type};
-                post.datetime = pwm.datetime;
+                Post post = new Post() { post_id = pwm.post_id, text = pwm.text, type = pwm.type };
+                post.datetime = $"{pwm.datetime.Day}.{pwm.datetime.Month}.{pwm.datetime.Year}";
                 if (pwm.file != null)
                 {
                     byte[] imageData = null;
@@ -75,6 +75,9 @@ namespace MO.DA.FORM.Controllers
                     // установка массива байтов
                     post.file = imageData;
                 }
+                else { post.file = null; }
+                    
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,8 +102,6 @@ namespace MO.DA.FORM.Controllers
         }
 
         // POST: Posts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("post_id,type,text,datetime,file")] Post post)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace MO.DA.FORM.Models
@@ -10,10 +11,10 @@ namespace MO.DA.FORM.Models
         public int post_id { get; set; }
         public string type { get; set; }
         public string text { get; set; }
-        
-        [BindProperty, DataType(DataType.Date)]
-        public DateOnly datetime { get; set; }
-        public byte[] file { get; set; }
+        public string datetime { get; set; }
+
+        [BindingBehavior(BindingBehavior.Never)]
+        public byte[]? file { get; set; }
 
     } 
     public class PostViewModel
@@ -24,9 +25,11 @@ namespace MO.DA.FORM.Models
         public string type { get; set; }
         public string text { get; set; }
         
-        [BindProperty, DataType(DataType.Date)]
-        public DateOnly datetime { get; set; }
-        public IFormFile file { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime datetime { get; set; }
+
+        [BindingBehavior(BindingBehavior.Optional)]
+        public IFormFile? file { get; set; }
 
     }
 }
