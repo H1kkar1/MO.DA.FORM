@@ -14,7 +14,6 @@
 @foreach (var item in Model)
 {
     <div class="post">
-
         <h1>
             @Html.DisplayFor(modelItem => item.type)
         </h1>
@@ -39,6 +38,5 @@
         <p id="datetime">
             Дата: @Html.DisplayFor(modelItem => item.datetime)<!--($"{item.datetime.Day}.{item.datetime.Month}.{item.datetime.Year}")-->
         </p>
-
     </div>
 }
