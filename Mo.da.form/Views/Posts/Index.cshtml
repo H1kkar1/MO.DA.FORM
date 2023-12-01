@@ -23,10 +23,10 @@
         </p>
         <div>
             @{
-                if (item.file != null) { @Html.Raw("<img style='width:380px; height:360px;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.file) + "\" />"); }
+                if (item.file != null) { @Html.Raw("<img style='display: block; width: auto; height: auto; max-width: 100%;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.file) + "\" />"); }
                 else
                 {
-                    <p>кратинки нет и не будет </p>
+                    <p>картинки нет и не будет </p>
                 }
                     
             }
