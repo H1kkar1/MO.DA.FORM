@@ -13,6 +13,7 @@ namespace MO.DA.FORM.Models
 
         public DbSet<User> User { get; set; }
         public DbSet<Post> Post { get; set; }
+        public DbSet<Homework> Homework { get; set; }
 
     }
 }
