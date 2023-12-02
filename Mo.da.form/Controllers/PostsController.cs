@@ -11,35 +11,38 @@ using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.Text;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MO.DA.FORM.Controllers
 {
+    
+
     public class PostsController : Controller
     {
-        private readonly DataContext _context;
+        private readonly DataContext _dbContext;
 
         public PostsController(DataContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            return _context.Post != null ?
-                        View(await _context.Post.ToListAsync()) :
+            return _dbContext.Post != null ?
+                        View(await _dbContext.Post.ToListAsync()) :
                         Problem("Entity set 'DataContext.Post'  is null.");
         }
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Post == null)
+            if (id == null || _dbContext.Post == null)
             {
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _dbContext.Post
                 .FirstOrDefaultAsync(m => m.post_id == id);
             if (post == null)
             {
@@ -78,8 +81,8 @@ namespace MO.DA.FORM.Controllers
                 else { post.file = null; }
                     
 
-                _context.Add(post);
-                await _context.SaveChangesAsync();
+                _dbContext.Add(post);
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(pwm);
@@ -88,12 +91,12 @@ namespace MO.DA.FORM.Controllers
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Post == null)
+            if (id == null || _dbContext.Post == null)
             {
                 return NotFound();
             }
 
-            var post = await _context.Post.FindAsync(id);
+            var post = await _dbContext.Post.FindAsync(id);
             if (post == null)
         {
                 return NotFound();
@@ -115,8 +118,8 @@ namespace MO.DA.FORM.Controllers
             {
                 try
                 {
-                    _context.Update(post);
-                    await _context.SaveChangesAsync();
+                    _dbContext.Update(post);
+                    await _dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,12 +140,12 @@ namespace MO.DA.FORM.Controllers
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Post == null)
+            if (id == null || _dbContext.Post == null)
         {
                 return NotFound();
         }
 
-            var post = await _context.Post
+            var post = await _dbContext.Post
                 .FirstOrDefaultAsync(m => m.post_id == id);
             if (post == null)
         {
@@ -157,23 +160,23 @@ namespace MO.DA.FORM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Post == null)
+            if (_dbContext.Post == null)
         {
                 return Problem("Entity set 'DataContext.Post'  is null.");
         }
-            var post = await _context.Post.FindAsync(id);
+            var post = await _dbContext.Post.FindAsync(id);
             if (post != null)
         {
-                _context.Post.Remove(post);
+                _dbContext.Post.Remove(post);
             }
 
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int id)
         {
-            return (_context.Post?.Any(e => e.post_id == id)).GetValueOrDefault();
+            return (_dbContext.Post?.Any(e => e.post_id == id)).GetValueOrDefault();
         }
     }
 }

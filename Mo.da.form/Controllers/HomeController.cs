@@ -53,9 +53,11 @@ namespace MO.DA.FORM.Controllers
         {
             return View("~/Views/Home/Starosta_and_zam.cshtml");
         }
-        public IActionResult Student()
+       public async Task<IActionResult> Student()
         {
-            return View("~/Views/Home/Student.cshtml");
+            return _dbContext.Post != null ?
+                        View(await _dbContext.Post.ToListAsync()) :
+                        Problem("Entity set 'DataContext.Post'  is null.");
         }
         public IActionResult Inf_of_pepod()
         {
