@@ -52,7 +52,7 @@ namespace MO.DA.FORM.Controllers
             return View(post);
         }
 
-        // GET: Posts/Create
+        // GET: Posts/Create_post_new
         public IActionResult Create()
         {
             return View();
@@ -79,7 +79,7 @@ namespace MO.DA.FORM.Controllers
                     post.file = imageData;
                 }
                 else { post.file = null; }
-                    
+
 
                 _dbContext.Add(post);
                 await _dbContext.SaveChangesAsync();
@@ -98,9 +98,9 @@ namespace MO.DA.FORM.Controllers
 
             var post = await _dbContext.Post.FindAsync(id);
             if (post == null)
-        {
+            {
                 return NotFound();
-        }
+            }
             return View(post);
         }
 
@@ -112,8 +112,8 @@ namespace MO.DA.FORM.Controllers
             if (id != post.post_id)
             {
                 return NotFound();
-        }
-        
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -140,15 +140,15 @@ namespace MO.DA.FORM.Controllers
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _dbContext.Post == null)
-        {
+            if (id == null || _context.Post == null)
+            {
                 return NotFound();
-        }
+            }
 
             var post = await _dbContext.Post
                 .FirstOrDefaultAsync(m => m.post_id == id);
             if (post == null)
-        {
+            {
                 return NotFound();
             }
 
@@ -160,14 +160,15 @@ namespace MO.DA.FORM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_dbContext.Post == null)
-        {
+            if (_context.Post == null)
+            {
                 return Problem("Entity set 'DataContext.Post'  is null.");
-        }
-            var post = await _dbContext.Post.FindAsync(id);
+            }
+            var post = await _context.Post.FindAsync(id);
             if (post != null)
-        {
-                _dbContext.Post.Remove(post);
+            {
+                _context.Post.Remove(post);
+
             }
 
             await _dbContext.SaveChangesAsync();
@@ -177,6 +178,69 @@ namespace MO.DA.FORM.Controllers
         private bool PostExists(int id)
         {
             return (_dbContext.Post?.Any(e => e.post_id == id)).GetValueOrDefault();
+        }
+
+        
+        // GET: Posts
+        public async Task<IActionResult> Index_homework()
+        {
+            return _context.Post != null ?
+                        View(await _context.Post.ToListAsync()) :
+                        Problem("Entity set 'DataContext.Post'  is null.");
+        }
+
+        // GET: Posts/Details/5
+        public async Task<IActionResult> Details_homework(int? id)
+        {
+            if (id == null || _context.Post == null)
+            {
+                return NotFound();
+            }
+
+            var post_homework = await _context.Post
+                .FirstOrDefaultAsync(m => m.post_id == id);
+            if (post_homework == null)
+            {
+                return NotFound();
+            }
+
+            return View(post_homework);
+        }
+        
+        // GET: Posts/Create_post_new
+        public IActionResult Create_homework()
+        {
+            return View();
+        }
+
+        // POST: Posts/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create_homework([Bind("post_id,type,text,datetime,file")] PostViewModel pwm)
+        {
+            if (ModelState.IsValid)
+            {
+                Post post_homework = new Post() { post_id = pwm.post_id, text = pwm.text, type = pwm.type };
+                post_homework.datetime = $"{pwm.datetime.Day}.{pwm.datetime.Month}.{pwm.datetime.Year}";
+                if (pwm.file != null)
+                {
+                    byte[] imageData = null;
+                    // считываем переданный файл в массив байтов
+                    using (var binaryReader = new BinaryReader(pwm.file.OpenReadStream()))
+                    {
+                        imageData = binaryReader.ReadBytes((int)pwm.file.Length);
+                    }
+                    // установка массива байтов
+                    post_homework.file = imageData;
+                }
+                else { post_homework.file = null; }
+
+
+                _context.Add(post_homework);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(pwm);
         }
     }
 }

@@ -1,26 +1,43 @@
-﻿@page
+﻿@model MO.DA.FORM.Models.PostViewModel
+
 @{
-    <div style="width: 100%; height: 100%; position: relative; background: #2C2C2C">
-        <div style="width: 1600px; height: 281px; left: 2px; top: 176px; position: absolute">
-            <div style="width: 1600px; height: 281px; left: 0px; top: 0px; position: absolute; background: #9D9D9D; border: 1px black solid"></div>
-            <div style="width: 1597px; height: 281px; left: 1px; top: 0px; position: absolute; color: #6A6A6A; font-size: 56px; font-family: Inter; font-weight: 400; word-wrap: break-word">Введите текст домашнего задания</div>
-        </div>
-        <div style="width: 1600px; height: 281px; left: 3px; top: 510px; position: absolute">
-            <div style="width: 1600px; height: 281px; left: 0px; top: 0px; position: absolute; background: #9D9D9D; border: 1px black solid"></div>
-            <div style="width: 1597px; height: 281px; left: 1px; top: 0px; position: absolute; color: #6A6A6A; font-size: 56px; font-family: Inter; font-weight: 400; word-wrap: break-word">Укажите сроки выполнения домашнего задания</div>
-        </div>
-        <div style="width: 1600px; height: 281px; left: 2px; top: 844px; position: absolute">
-            <div style="width: 1600px; height: 281px; left: 0px; top: 0px; position: absolute; background: #9D9D9D; border: 1px black solid"></div>
-            <div style="width: 1597px; height: 281px; left: 1px; top: 0px; position: absolute; color: #6A6A6A; font-size: 56px; font-family: Inter; font-weight: 400; text-decoration: underline; word-wrap: break-word">Добавить записи лекций...</div>
-        </div>
-        <img style="width: 303px; height: 82px; left: 55px; top: 41px; position: absolute" src="https://via.placeholder.com/303x82" />
-        <div style="width: 1205px; height: 87.31px; left: 380px; top: 41px; position: absolute">
-            <div style="width: 1205px; height: 87.31px; left: 0px; top: 0px; position: absolute; background: #D9D9D9; border-radius: 30px"></div>
-            <div style="width: 1180px; height: 87px; left: 24px; top: 0px; position: absolute; color: #4A4A4A; font-size: 25px; font-family: Inter; font-weight: 400; word-wrap: break-word">Выберете предмет</div>
-        </div>
-        <div style="width: 1207px; height: 91px; left: 196px; top: 1178px; position: absolute">
-            <div style="width: 1207px; height: 89.22px; left: 0px; top: 0px; position: absolute; background: #4A4A4A; border-radius: 30px"></div>
-            <div style="width: 1205px; height: 91px; left: 2px; top: 0px; position: absolute; text-align: center; color: white; font-size: 35px; font-family: Inter; font-weight: 400; word-wrap: break-word">Опубликовать</div>
-        </div>
-    </div>
+    ViewData["Title"] = "Create_homework";
 }
+
+<h1 style="font-size:4vw;">Добавить домашнее задание</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="type" class="control-label"></label>
+                <input asp-for="type" class="form-control" />
+                <span asp-validation-for="type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="text" class="control-label"></label>
+                <input asp-for="text" class="form-control" />
+                <span asp-validation-for="text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="datetime" class="control-label"></label>
+                <input asp-for="datetime" class="form-control" />
+                <span asp-validation-for="datetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="file" class="control-label"></label>
+                <input asp-for="file" type="file" class="form-control" />
+                <span asp-validation-for="file" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index_homework">Back to List</a>
+</div>
