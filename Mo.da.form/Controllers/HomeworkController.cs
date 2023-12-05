@@ -1,73 +1,162 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MO.DA.FORM.Models;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Runtime.InteropServices;
-using System.Text;
-using System;
 
 namespace MO.DA.FORM.Controllers
 {
     public class HomeworkController : Controller
     {
-        private readonly ILogger<HomeworkController> _logger;
-        private readonly IConfiguration _configuration;
-        private readonly DataContext _dbContext;
-        public HomeworkController(ILogger<HomeworkController> logger, IConfiguration configuration, DataContext dataContext)
+        private readonly DataContext _context;
+
+        public HomeworkController(DataContext context)
         {
-            _logger = logger;
-            _configuration = configuration;
-            _dbContext = dataContext;
+            _context = context;
         }
 
-        public IActionResult Index()
+        // GET: Homework
+        public async Task<IActionResult> Index()
+        {
+              return _context.Homework != null ? 
+                          View(await _context.Homework.ToListAsync()) :
+                          Problem("Entity set 'DataContext.Homework'  is null.");
+        }
+
+        // GET: Homework/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Homework == null)
+            {
+                return NotFound();
+            }
+
+            var homework = await _context.Homework
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (homework == null)
+            {
+                return NotFound();
+            }
+
+            return View(homework);
+        }
+
+        // GET: Homework/Create
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        // POST: Homework/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("id,text,subject")] Homework homework)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Add(homework);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(homework);
         }
 
-        [HttpGet]
-        public IActionResult Auth()
+        // GET: Homework/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
-        }
-        
+            if (id == null || _context.Homework == null)
+            {
+                return NotFound();
+            }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var homework = await _context.Homework.FindAsync(id);
+            if (homework == null)
+            {
+                return NotFound();
+            }
+            return View(homework);
         }
 
-        [HttpGet]
-        public IActionResult Homework_daily()
+        // POST: Homework/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("id,text,subject")] Homework homework)
         {
-            return View("~/Views/Homework/Homework_daily.cshtml");
+            if (id != homework.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(homework);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!HomeworkExists(homework.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(homework);
         }
-        public IActionResult Homework_semestr()
+
+        // GET: Homework/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View("~/Views/Homework/Homework_semestr.cshtml");
+            if (id == null || _context.Homework == null)
+            {
+                return NotFound();
+            }
+
+            var homework = await _context.Homework
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (homework == null)
+            {
+                return NotFound();
+            }
+
+            return View(homework);
         }
-        public IActionResult Deadline_daily()
+
+        // POST: Homework/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            return View("~/Views/Homework/Deadline_daily.cshtml");
+            if (_context.Homework == null)
+            {
+                return Problem("Entity set 'DataContext.Homework'  is null.");
+            }
+            var homework = await _context.Homework.FindAsync(id);
+            if (homework != null)
+            {
+                _context.Homework.Remove(homework);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
-        public IActionResult Deadline_semestr()
+
+        private bool HomeworkExists(int id)
         {
-            return View("~/Views/Homework/Deadline_semestr.cshtml");
-        }
-        public IActionResult Homework()
-        {
-            return View("~/Views/Homework/Homework.cshtml");
-        }
-        public IActionResult List_of_quest()
-        {
-            return View("~/Views/Homework/List_of_quest.cshtml");
+          return (_context.Homework?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
