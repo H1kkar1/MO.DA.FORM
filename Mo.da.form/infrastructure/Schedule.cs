@@ -12,7 +12,7 @@ namespace MO.DA.FORM.infrastructure
             using (var httpClient = new HttpClient())
             {
                 object? data = await httpClient.GetAsync("https://e.mospolytech.ru/#/schedule/current");
-                await data.ToString();
+                
             }
         }
     }

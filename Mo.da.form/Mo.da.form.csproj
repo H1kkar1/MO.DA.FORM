@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="infrastructure\Get_session\**" />
     <Compile Remove="wwwroot\Новая папка\**" />
+    <Content Remove="infrastructure\Get_session\**" />
     <Content Remove="wwwroot\Новая папка\**" />
+    <EmbeddedResource Remove="infrastructure\Get_session\**" />
     <EmbeddedResource Remove="wwwroot\Новая папка\**" />
+    <None Remove="infrastructure\Get_session\**" />
     <None Remove="wwwroot\Новая папка\**" />
   </ItemGroup>
 
@@ -25,10 +29,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="infrastructure\Get_session\" />
   </ItemGroup>
 
   <ItemGroup>

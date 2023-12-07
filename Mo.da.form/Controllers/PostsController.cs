@@ -140,7 +140,7 @@ namespace MO.DA.FORM.Controllers
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Post == null)
+            if (id == null || _dbContext.Post == null)
             {
                 return NotFound();
             }
@@ -160,14 +160,14 @@ namespace MO.DA.FORM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Post == null)
+            if (_dbContext.Post == null)
             {
                 return Problem("Entity set 'DataContext.Post'  is null.");
             }
-            var post = await _context.Post.FindAsync(id);
+            var post = await _dbContext.Post.FindAsync(id);
             if (post != null)
             {
-                _context.Post.Remove(post);
+                _dbContext.Post.Remove(post);
 
             }
 
@@ -184,20 +184,20 @@ namespace MO.DA.FORM.Controllers
         // GET: Posts
         public async Task<IActionResult> Index_homework()
         {
-            return _context.Post != null ?
-                        View(await _context.Post.ToListAsync()) :
+            return _dbContext.Post != null ?
+                        View(await _dbContext.Post.ToListAsync()) :
                         Problem("Entity set 'DataContext.Post'  is null.");
         }
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details_homework(int? id)
         {
-            if (id == null || _context.Post == null)
+            if (id == null || _dbContext.Post == null)
             {
                 return NotFound();
             }
 
-            var post_homework = await _context.Post
+            var post_homework = await _dbContext.Post
                 .FirstOrDefaultAsync(m => m.post_id == id);
             if (post_homework == null)
             {
@@ -236,8 +236,8 @@ namespace MO.DA.FORM.Controllers
                 else { post_homework.file = null; }
 
 
-                _context.Add(post_homework);
-                await _context.SaveChangesAsync();
+                _dbContext.Add(post_homework);
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(pwm);
