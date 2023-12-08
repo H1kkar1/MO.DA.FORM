@@ -1,0 +1,18 @@
+﻿.backeng {
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+.myClass {
+    width: 100%;
+    opacity: 0.35;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
