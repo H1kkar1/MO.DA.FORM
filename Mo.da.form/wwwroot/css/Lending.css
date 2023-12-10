@@ -1,18 +1,33 @@
-﻿.backeng {
-    max-width: 100%;
+﻿.back {
+    width: 1920px;
+    height: 800px;
     margin: auto;
+    padding: 60px;
     text-align: center;
     position: relative;
     color: white;
 }
-.myClass {
-    width: 100%;
-    opacity: 0.35;
+
+#tekst_sverhu_kartinki {
+    position: relative;
 }
 
-.centered {
+.tekst_sverhu_kartinki {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 65px;
+    text-transform: uppercase;
+    color: white;
+    width: 350px;
+    background: #00000094;
+    padding: 10px;
+    text-align: center;
+    font: bold 24px/34px Helvetica, Sans-Serif;
+}
+
+
+
+
+h7 {
+    font-size: 3vw;
 }

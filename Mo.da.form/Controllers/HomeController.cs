@@ -63,5 +63,9 @@ namespace MO.DA.FORM.Controllers
         {
             return View("~/Views/Home/Inf_of_prepod.cshtml");
         }
+        public IActionResult Lending()
+        {
+            return View("~/Views/Home/Lending.cshtml");
+        }
     }
 }
