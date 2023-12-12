@@ -22,7 +22,11 @@
         </p>
         <div>
             @{
-                if (item.file != null) { @Html.Raw("<img style='display: block; width: auto; height: auto; max-width: 100%;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.file) + "\" />"); }
+                if (item.file != null)
+                {
+                    @Html.Raw("<img style='display: block; width: auto; height: auto; max-width: 1024px; max-height: 500px;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.file) + "\" />")
+                    ;
+                }
                 else
                 {
                     <p>картинки нет и не будет </p>

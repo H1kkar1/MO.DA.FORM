@@ -1,0 +1,40 @@
+﻿.back {
+    width: 1920px;
+    height: 800px;
+    margin: auto;
+    padding: 90px;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+.block {
+    display: block;
+    float: left;
+    margin: 10px;
+    position: relative;
+    height: 410px;
+    width: 255px;
+}
+
+.image img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.more {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+    .more a {
+        display: inline-block;
+        color: #fff;
+        border-radius: 4px;
+        border: 1px solid #f6705a;
+        padding: 5px 20px;
+    }
