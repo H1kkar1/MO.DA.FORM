@@ -1,45 +1,42 @@
 ﻿@model MO.DA.FORM.Models.PostViewModel
 
 @{
-    ViewData["Title"] = "Create_post_new";
+    ViewData["Title"] = "Create";
 }
+<link rel="stylesheet" href="~/css/Form.css" />
+<h1>Create</h1>
 
-<h1 style="font-size:4vw;">Добавить новость</h1>
-
+<h4>Post</h4>
 <hr />
-<div class="wrapper">
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label class="control-label"> <h7 align="center" style=" font-size:1.5vw;">Пожалуйста, введите заголовок</h7> </label>
-                    <input asp-for="type" class="form-control" />
-                    <span asp-validation-for="type" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> <h7 align="center" style=" font-size:1.5vw;">Пожалуйста, введите текст</h7> </label>
-                    <input asp-for="text" class="form-control" />
-                    <span asp-validation-for="text" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> <h7 align="center" style=" font-size:1.5vw;">Пожалуйста, введите дату публикации</h7> </label>
-                    <input asp-for="datetime" class="form-control"/>
-                    <span asp-validation-for="datetime" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"> <h7 align="center" style=" font-size:1.5vw;">Пожалуйста, прикрепите файл</h7> </label>
-                    <input asp-for="file" type="file" class="form-control" />
-                    <span asp-validation-for="file" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
+<div class="row">
+    <div class="col-md-4" style="width:100%; margin-left:300px;">
+        <form class="reg_form" asp-action="Create" style="width:1000px;">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="type" class="control-label">Заголовок</label>
+                <input asp-for="type" class="form-control" />
+                <span asp-validation-for="type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="text" class="control-label"></label>
+                <textarea class="form-control" oninput="document.querySelector('input#inp').value = this.value;" placeholder="Введите основной текст поста" style="height:500px; width:100%;"></textarea>
+                <input id="inp" asp-for="text"  style="display:none" />
+                <span asp-validation-for="text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="datetime" class="control-label">Дата публикации</label>
+                <input asp-for="datetime" class="form-control" />
+                <span asp-validation-for="datetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="file" class="control-label">Фото</label>
+                <input asp-for="file" class="form-control" />
+                <span asp-validation-for="file" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 </div>
+

@@ -1,11 +1,7 @@
 ﻿@model IEnumerable<MO.DA.FORM.Models.Post>
 @{
     <link rel="stylesheet" href="~/css/lk.css"/>
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Новости</button>
-    <a asp-controller="Users" asp-action="Logout" style="float: right;">
-        <button class="btn btn-danger" type="button">Выйти из аккаунта</button>
-    </a>
-    
+
     
 
     <div class="offcanvas offcanvas-start" style="background-color:#565656; width:300px;" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -48,6 +44,34 @@
         </div>
     </div>
 
+    @section DropMenu{
+        <li class="menu_item">
+            <a href="https://e.mospolytech.ru/#/home" style=" text-decoration:none; ">
+                <button class="btn btn-light" type="button" style="width:100%">Личный кабинет Политеха</button>
+            </a>
+        </li>
+        <hr class="hr"/>
+
+        <li>
+            <a asp-controller="Users" asp-action="Details" asp-route-id="@User.Identity.Name.ToString()">
+                <button class="btn btn-light" type="button" style="width:100%">Профиль</button>
+            </a>
+        </li>
+        <hr class="hr" />
+
+        <li class="menu_item">
+            <a asp-controller="Users" asp-action="Logout" >
+                <button class="btn btn-danger" type="button" style="width:100%">Выйти из аккаунта</button>
+            </a>
+        </li>
+       
+
+       
+    }
+    
+
+    
+    
     <hr class="hr" />
     <div class="lk-chapter">
         <h2>Домашнее задание</h2>
@@ -57,7 +81,26 @@
     <hr class="hr"/>
     <div class="lk-chapter">
         <h2>Дедлайны по дз</h2>
-        <button class="btn btn-secondary">Добавить срок сдачи дз</button>
+        <button class="btn btn-secondary" >Добавить срок сдачи дз</button>
     </div>
    
 }
+<style>
+    .menu_item {
+        margin-left:10px;
+        margin-right:10px;
+        transition: all 0.3s ease-out;
+    }
+
+        .menu_item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-out;
+        }
+
+    .hr{
+        background-color: #ffffff;
+        margin:30px;
+    }
+</style>
+    

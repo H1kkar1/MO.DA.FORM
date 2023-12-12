@@ -4,45 +4,35 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Профиль</h1>
 
-<div>
-    <h4>User</h4>
+<div style="margin:60px 0px 100px;">
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
+            Имя
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.email)
+            Почта
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.email)
-        </dd>
+        </dd>       
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.group)
+            Группа
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.group)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.leader)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.leader)
-        </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div style="margin-bottom:90px;">
+    <a asp-action="Edit" asp-route-id="@Model?.id">
+        <button class="btn btn-light">
+            Редактировать
+        </button>
+    </a>
 </div>

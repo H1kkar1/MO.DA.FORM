@@ -19,14 +19,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => options.LoginPath = "/Users/Login");
 
-builder.Services.AddTransient<IAuthorizationHandler, LeaderHandler>();
-
 builder.Services.AddAuthorization(opts => {
     // устанавливаем ограничение по возрасту
-    opts.AddPolicy("Limit",
-        policy => policy.AddRequirements(new LeaderRequirement("True")));
+    opts.AddPolicy("LeaderLimit", policy => policy.RequireClaim("leader", "True")) ;
 });
-
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 
 
@@ -42,12 +39,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Lending}/{id?}");
 
 
 builder.Services.AddCors();

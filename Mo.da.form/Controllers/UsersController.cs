@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -73,6 +74,7 @@ namespace MO.DA.FORM.Controllers
                 user.password = get_hash_paswd(user.password);
                 _context.Add(user);
                 await _context.SaveChangesAsync();
+                await Authenticate(user);
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -108,6 +110,7 @@ namespace MO.DA.FORM.Controllers
             {
                 try
                 {
+                    user.password = get_hash_paswd(user.password);
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
@@ -185,7 +188,11 @@ namespace MO.DA.FORM.Controllers
                 if (user != null)
                 {
                     await Authenticate(user);
-                    return RedirectToAction("Student", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "Неправельно введён email или такого пользователя нет");
+                    return View(model);
                 }
                 
             }
@@ -195,18 +202,21 @@ namespace MO.DA.FORM.Controllers
         [ValidateAntiForgeryToken]
         private async Task Authenticate(User user)
         {
-            // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.name),
-                new Claim("leader", user.leader.ToString())             
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.id.ToString()),
+                new Claim("leader", user.leader.ToString()),             
             };
             // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity id = new ClaimsIdentity(claims,"ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id), new AuthenticationProperties
+            {
+                IsPersistent = true
+            });
+
         }
-        [Authorize]
+        [Authorize(Policy = "Limit")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

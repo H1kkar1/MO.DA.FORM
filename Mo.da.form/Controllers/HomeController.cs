@@ -8,6 +8,7 @@ using System.Text;
 using System;
 using MO.DA.FORM.infrastructure;
 using NuGet.Protocol;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -22,7 +23,9 @@ namespace MO.DA.FORM.Controllers
             _configuration = configuration;
             _dbContext = dataContext;
         }
+
         [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             return View();            
@@ -49,6 +52,7 @@ namespace MO.DA.FORM.Controllers
         {
             return View("~/Views/Home/Starosta_and_zam.cshtml");
         }
+        [Authorize]
         public async Task<IActionResult> Student()
         {
             return _dbContext.Post != null ?
@@ -58,15 +62,8 @@ namespace MO.DA.FORM.Controllers
 
         [HttpGet]
         public IActionResult Inf_of_pepod()
-        {
-            String response;
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                response = new String($"нормальный пчел {HttpContext.User.Identity.Name}");
-                return View(response);
-            }
-            return View();
-            
+        {          
+            return View();           
         } 
         public IActionResult Get_Schedule()
         {

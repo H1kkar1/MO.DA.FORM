@@ -1,9 +1,9 @@
 ﻿.reg_form {
-    display: inline-block-cell;
-    width: 500px;
-    height: 400px;
-    padding: 30px;
-    margin-top: 30px;
+    display: inline-block;
+    min-width: 500px;
+    min-height: 400px;
+    padding: 20px;
+    margin-top: 60px;
     border-radius: 30px;
     border: 2px solid;
     justify-content: center;
@@ -11,7 +11,7 @@
 }
 
     .reg_form div {
-        margin: 17px;
+        margin: 40px;
     }
 
 .row {

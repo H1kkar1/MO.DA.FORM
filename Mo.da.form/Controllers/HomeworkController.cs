@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,7 @@ namespace MO.DA.FORM.Controllers
         }
 
         // GET: Homework/Create
+        [Authorize(Policy = "LeaderLimit")]
         public IActionResult Create()
         {
             return View();
@@ -67,6 +69,7 @@ namespace MO.DA.FORM.Controllers
         }
 
         // GET: Homework/Edit/5
+        [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Homework == null)
@@ -84,7 +87,7 @@ namespace MO.DA.FORM.Controllers
 
         // POST: Homework/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> Edit(int id, [Bind("id,text,subject")] Homework homework)
         {
             if (id != homework.id)
@@ -116,6 +119,7 @@ namespace MO.DA.FORM.Controllers
         }
 
         // GET: Homework/Delete/5
+        [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Homework == null)
@@ -135,7 +139,7 @@ namespace MO.DA.FORM.Controllers
 
         // POST: Homework/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Homework == null)

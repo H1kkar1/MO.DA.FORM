@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MO.DA.FORM.Controllers
 {
-    
+
 
     public class PostsController : Controller
     {
@@ -54,7 +54,7 @@ namespace MO.DA.FORM.Controllers
         }
 
         // GET: Posts/Create_post_new
-        [Authorize(Policy = "Limit")]
+        [Authorize(Policy = "LeaderLimit")]
         public IActionResult Create()
         {
             return View();
