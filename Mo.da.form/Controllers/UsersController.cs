@@ -183,13 +183,19 @@ namespace MO.DA.FORM.Controllers
                 User user = await _context.User.FirstOrDefaultAsync(u => u.email == model.email && u.password == get_hash_paswd(model.password));
                 if (user != null)
                 {
-                    await Authenticate(model.email, model.leader.ToString()); // аутентификация
+                    var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.leader.ToString()) };
+                    // создаем объект ClaimsIdentity
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+                    // установка аутентификационных куки
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                    return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction("Student", "Home");
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                
             }
             return View(model);
+            
         }
         [ValidateAntiForgeryToken]
         private async Task Authenticate(string userName, string leader)

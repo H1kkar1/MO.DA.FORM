@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.Text;
 using System;
+using MO.DA.FORM.infrastructure;
+using NuGet.Protocol;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -20,19 +22,13 @@ namespace MO.DA.FORM.Controllers
             _configuration = configuration;
             _dbContext = dataContext;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View();            
         }
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Auth()
         {
             return View();
         }
@@ -49,19 +45,38 @@ namespace MO.DA.FORM.Controllers
         {
             return View("~/Views/Home/Teacher.cshtml");
         }
-         public IActionResult Starosta_and_zam()
+        public IActionResult Starosta_and_zam()
         {
             return View("~/Views/Home/Starosta_and_zam.cshtml");
         }
-       public async Task<IActionResult> Student()
+        public async Task<IActionResult> Student()
         {
             return _dbContext.Post != null ?
                         View(await _dbContext.Post.ToListAsync()) :
                         Problem("Entity set 'DataContext.Post'  is null.");
         }
+
+        [HttpGet]
         public IActionResult Inf_of_pepod()
         {
-            return View("~/Views/Home/Inf_of_prepod.cshtml");
+            String response;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                response = new String($"нормальный пчел {HttpContext.User.Identity.Name}");
+                return View();
+            }
+            return View();
+            
+        } 
+        public IActionResult Get_Schedule()
+        {
+            Schedule schedule = new Schedule();
+            HttpClient sharedClient = new()
+            {
+                BaseAddress = new Uri("https://e.mospolytech.ru"),
+            };
+            _ = schedule.GetAsync();
+            return View();
         }
         public IActionResult Lending()
         {

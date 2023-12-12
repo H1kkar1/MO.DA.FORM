@@ -12,16 +12,17 @@
 
 
 <body style="background: #2c2c2c; font-size: 25px; color:white;">
-    <div id="header">
-        <img src="~/img/logo.png" style="width:300px; float:left; margin: 30px 10px;" />
+    <div class="wrapper">
+        <div id="header">
+            <img src="~/img/logo.png" style="width:300px; float:left; margin: 30px 10px;" />
 
-        <div style="width:250px; height:120px; margin:30px 370px;">
-            <label for="searh" style="color:white;"> Поиск по сайту</label>
-            <input name="searh" placeholder="Введите запрос..." />
-        </div>
+            <div style="width:250px; height:120px; margin:30px 370px;">
+                <label for="searh" style="color:white;"> Поиск по сайту</label>
+                <input name="searh" placeholder="Введите запрос..." />
+            </div>
 
-        <div>
-            <ul class="d-flex justify-content-around top-nav-bar">
+            <div>
+                <ul class="d-flex justify-content-around top-nav-bar">
 
                 <li>
                     <a href="https://online.mospolytech.ru" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
@@ -29,6 +30,7 @@
                     </a>
                 </li>
                 <li>
+
                     <a href="https://rasp.dmami.ru/" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
                         <p class="nav_p">Расписание занятий</p>
                     </a>
@@ -99,5 +101,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    </div>
 </body>
 </html>
