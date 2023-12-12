@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MO.DA.FORM.Models;
 using System.Security.Claims;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using MO.DA.FORM.infrastructure;
+using Humanizer;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(opt =>
@@ -16,6 +19,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => options.LoginPath = "/Users/Login");
 
+builder.Services.AddTransient<IAuthorizationHandler, LeaderHandler>();
+
+builder.Services.AddAuthorization(opts => {
+    // устанавливаем ограничение по возрасту
+    opts.AddPolicy("Limit",
+        policy => policy.AddRequirements(new LeaderRequirement("True")));
+});
 
 var app = builder.Build();
 
@@ -37,7 +47,7 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Users}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
 builder.Services.AddCors();

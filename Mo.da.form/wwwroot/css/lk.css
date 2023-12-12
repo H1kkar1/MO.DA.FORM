@@ -2,6 +2,9 @@
     padding: 2em;
     margin-top:50px;
 }
-h2{
-    
+.prof {
+    vertical-align: top;
+    display: inline-block;
+    border: solid 2px;
+    border-color: #ffffff;
 }

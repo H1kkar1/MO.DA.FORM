@@ -9,6 +9,7 @@ using MO.DA.FORM.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -183,13 +184,7 @@ namespace MO.DA.FORM.Controllers
                 User user = await _context.User.FirstOrDefaultAsync(u => u.email == model.email && u.password == get_hash_paswd(model.password));
                 if (user != null)
                 {
-                    var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.leader.ToString()) };
-                    // создаем объект ClaimsIdentity
-                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-                    // установка аутентификационных куки
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
-
+                    await Authenticate(user);
                     return RedirectToAction("Student", "Home");
                 }
                 
@@ -198,23 +193,24 @@ namespace MO.DA.FORM.Controllers
             
         }
         [ValidateAntiForgeryToken]
-        private async Task Authenticate(string userName, string leader)
+        private async Task Authenticate(User user)
         {
             // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, leader)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.name),
+                new Claim("leader", user.leader.ToString())             
             };
             // создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Login", "Users");
         }
     }
 }

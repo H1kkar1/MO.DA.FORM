@@ -63,7 +63,7 @@ namespace MO.DA.FORM.Controllers
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 response = new String($"нормальный пчел {HttpContext.User.Identity.Name}");
-                return View();
+                return View(response);
             }
             return View();
             

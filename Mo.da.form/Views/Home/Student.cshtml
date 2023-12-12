@@ -2,10 +2,15 @@
 @{
     <link rel="stylesheet" href="~/css/lk.css"/>
     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Новости</button>
+    <a asp-controller="Users" asp-action="Logout" style="float: right;">
+        <button class="btn btn-danger" type="button">Выйти из аккаунта</button>
+    </a>
+    
+    
 
     <div class="offcanvas offcanvas-start" style="background-color:#565656; width:300px;" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Что-то нове и интересое</h5>
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Что-то новое и интересое</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
         </div>
         <div class="offcanvas-body">
@@ -42,6 +47,7 @@
             }
         </div>
     </div>
+
     <hr class="hr" />
     <div class="lk-chapter">
         <h2>Домашнее задание</h2>
@@ -52,6 +58,6 @@
     <div class="lk-chapter">
         <h2>Дедлайны по дз</h2>
         <button class="btn btn-secondary">Добавить срок сдачи дз</button>
-    </div>    
-
+    </div>
+   
 }

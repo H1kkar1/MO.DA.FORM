@@ -1,33 +1,31 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.VisualBasic;
 using System.Security.Claims;
 
 namespace MO.DA.FORM.infrastructure
 {
-    public class leaderRequirement
+    public class LeaderRequirement : IAuthorizationRequirement
     {
         protected internal string leader { get; set; }
 
-        public leaderRequirement( string led) {
+        public LeaderRequirement( string led) {
             leader = led;
         }
     }
-    //public class leaderHandler : AuthorizationHandler<leaderRequirement>
-    //{
-    //    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-    //        leaderRequirement requirement)
-    //    {
-    //        if (context.User.HasClaim(c => c.Type == Claim))
-    //        {
-    //            var year = 0;
-    //            if (Int32.TryParse(context.User.FindFirst(c => c.Type == ClaimTypes.DateOfBirth).Value, out year))
-    //            {
-    //                if ((DateTime.Now.Year - year) >= requirement.Age)
-    //                {
-    //                    context.Succeed(requirement);
-    //                }
-    //            }
-    //        }
-    //        return Task.CompletedTask;
-    //    }
-    //}
+    public class LeaderHandler : AuthorizationHandler<LeaderRequirement>
+    {
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+            LeaderRequirement requirement)
+        {
+            if (context.User.Identity.Name == "True")
+            {
+                context.Succeed(requirement);
+            }
+            else
+            {
+                context.Fail();
+            }
+            return Task.CompletedTask;
+        }
+    }
 }

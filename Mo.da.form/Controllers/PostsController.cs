@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -53,6 +54,7 @@ namespace MO.DA.FORM.Controllers
         }
 
         // GET: Posts/Create_post_new
+        [Authorize(Policy = "Limit")]
         public IActionResult Create()
         {
             return View();
@@ -60,7 +62,7 @@ namespace MO.DA.FORM.Controllers
 
         // POST: Posts/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]  
         public async Task<IActionResult> Create([Bind("post_id,type,text,datetime,file")] PostViewModel pwm)
         {
             if (ModelState.IsValid)
