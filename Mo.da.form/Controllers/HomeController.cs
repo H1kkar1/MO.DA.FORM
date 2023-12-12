@@ -78,5 +78,9 @@ namespace MO.DA.FORM.Controllers
             _ = schedule.GetAsync();
             return View();
         }
+        public IActionResult Lending()
+        {
+            return View("~/Views/Home/Lending.cshtml");
+        }
     }
 }
