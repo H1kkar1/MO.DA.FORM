@@ -1,4 +1,4 @@
-﻿@model MO.DA.FORM.Models.Homework
+﻿@model MO.DA.FORM.Models.HomeworkViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -21,6 +21,11 @@
                 <label asp-for="subject" class="control-label"></label>
                 <input asp-for="subject" class="form-control" />
                 <span asp-validation-for="subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deadline" class="control-label">Дата публикации</label>
+                <input asp-for="deadline" class="form-control" />
+                <span asp-validation-for="deadline" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

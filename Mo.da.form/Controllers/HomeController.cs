@@ -55,8 +55,8 @@ namespace MO.DA.FORM.Controllers
         [Authorize]
         public async Task<IActionResult> Student()
         {
-            return _dbContext.Post != null ?
-                        View(await _dbContext.Post.ToListAsync()) :
+            return _dbContext.Homework != null ?
+                        View(await _dbContext.Homework.ToListAsync()) :
                         Problem("Entity set 'DataContext.Post'  is null.");
         }
 

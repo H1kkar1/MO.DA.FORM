@@ -57,13 +57,15 @@ namespace MO.DA.FORM.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,text,subject")] Homework homework)
+        public async Task<IActionResult> Create([Bind("id,deadline,text,subject")] HomeworkViewModel homework)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(homework);
+                Homework work = new Homework() { id = homework.id, text = homework.text, subject = homework.subject };
+                work.deadline = $"{homework.deadline.Day}.{homework.deadline.Month}.{homework.deadline.Year}";
+                _context.Add(work);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Student","Home");
             }
             return View(homework);
         }
