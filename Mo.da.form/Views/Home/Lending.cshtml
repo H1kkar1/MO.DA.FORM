@@ -8,21 +8,64 @@
             <img src="~/img/banner.png" style="width:100%;">
         </div>
         <br />
-        <div align="center" class="form-group">
-            <input type="submit" value="Зарегистрироваться" class="btn btn-primary" />
-        </div>
+        <a asp-controller="Users" asp-action="Create" class="f-a" style="display: block;
+    margin-left: auto;
+    margin-right: auto">
+            Зарегистрироваться
+        </a>
     </div>
 
-    <div class="back">
+    <div>
         <h5 align="center" style=" font-size:2vw;"><br />Благодаря нашему сайту Вы сможете:</h5>
         <h5 align="left" style=" font-size:2vw;">- Видеть всю домашнюю работу и сроки к ней как для текущей недели, так и для всего семестра;<br />- Узнавать в числе первых об актуальной информации, касающейся учёбы, олимпиад, стажировок и многой другой;<br />- Найти контактную информацию интересующего Вас преподавателя;<br />- Посмотреть список вопросов для экзамена и зачёта и добавить всей группой ответы на них;<br />- А также перейти на ресурсы, связанные с учебной жизнью Московского Политеха (СДО, Личный кабинет, расписания занятий и сессии).</h5>
-    <br />
-    <h5 align="center" style=" font-size:2vw;">Для того, чтобы воспользоваться функцианалом сайта необходимо:</h5>
-    <div align="center" class="form-group">
-            <input type="submit" value="Войти" class="btn btn-primary" />
+        <br />
+        <h5 align="center" style=" font-size:2vw;">Для того, чтобы воспользоваться функцианалом сайта необходимо:</h5>
+        <div class="line_block">
+            <div class="line">
+                <a asp-controller="Users" asp-action="Login" align="center" class="f-a">
+                    Войти
+                </a>
+            </div>
+            <div class="line">
+                <p>ИЛИ</p>
+            </div>
+            <div class="line">
+                <a asp-controller="Users" asp-action="Create" align="center" class="f-a">
+                    Зарегистрироваться
+                </a>
+            </div>
         </div>
-    <div align="center" class="form-group">
-            <input type="submit" value="Зарегистрироваться" class="btn btn-primary" />
-        </div>
+        
+        
+       
+        
     </div>
 </div>
+
+<style>
+    .f-a {
+        color: #FFFFFF;
+        overflow: hidden;
+        font-size: 25px;
+        text-decoration: none;
+        text-align: center;
+        bottom: auto;
+        background: rgba(73.51,73.51,73.51,1);
+        border-radius: 30px;
+        border: 3px solid #d6d6d6;
+        padding:10px;
+        transition: 0.3s;
+        
+    }
+    .line_block{
+        margin-left: 30%;
+        padding: 50px;
+    }
+    .line{
+        margin-left:40px;
+        display: inline-block;
+    }
+    .f-a:hover{
+        transform: scale(1.06)
+    }
+</style>

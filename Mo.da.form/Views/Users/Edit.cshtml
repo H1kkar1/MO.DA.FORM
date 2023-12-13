@@ -5,10 +5,10 @@
 }
 
 <link rel="stylesheet" href="~/css/Form.css"/>
-<hr />
+
 <div class="row">
     <div class="col-md-4">
-        <h1 style="margin: 50px 530px;">Изменение информации</h1>
+        <h1 aligin="centered">Изменение информации</h1>
         <form asp-action="Edit" class="reg_form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
@@ -32,19 +32,10 @@
                 <input asp-for="group" class="form-control" />
                 <span asp-validation-for="group" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="leader" /> @Html.DisplayNameFor(model => model.leader)
-                </label>
-            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

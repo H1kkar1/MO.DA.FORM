@@ -14,13 +14,15 @@
 <body style="background: #2c2c2c; font-size: 25px; color:white;">
     <div class="wrapper">
         <div id="header">
-            <img src="~/img/logo.png" style="width:300px; float:left; margin: 30px 10px;" />
+            <a asp-controller="Home" asp-action="Student">
+                <img src="~/img/logo.png" style="width:300px; float:left; margin: 30px 10px;" />
+            </a>
+            
 
             <div style="width:250px; height:120px; margin:30px 370px;">
                 <label for="searh" style="color:white;"> Поиск по сайту</label>
                 <input name="searh" placeholder="Введите запрос..." />
             </div>
-
             <div>
                 <ul class="d-flex justify-content-around top-nav-bar">
 
@@ -41,11 +43,29 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://e.mospolytech.ru/#/home" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
+                    <a asp-controller="Home" asp-action="Student" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
                         <p class="nav_p">Личный кабинет</p>
                     </a>
                 </li>
-            </ul>
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="overflow: hidden; text-decoration: none; text-align: center; bottom:auto;float:right;">
+                        </button>
+                        <ul class="dropdown-menu DropMenu" aria-labelledby="dropdownMenuButton1">
+                            <a asp-controller="Posts" asp-action="Index"> 
+                                <button class="btn btn-light"
+                                        style="width:100%">
+                                    Новости
+                                </button>
+                            </a>
+                            
+
+                            <hr class="hr" />
+                            @RenderSection("DropMenu",false)
+                        </ul>
+                    </div>
+
+                </ul>
         </div>
        
     </div>

@@ -1,57 +1,78 @@
-﻿@model IEnumerable<MO.DA.FORM.Models.Post>
+﻿@model IEnumerable<MO.DA.FORM.Models.Homework>
 @{
     <link rel="stylesheet" href="~/css/lk.css"/>
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Новости</button>
 
-    <div class="offcanvas offcanvas-start" style="background-color:#565656; width:300px;" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Что-то нове и интересое</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
-        </div>
-        <div class="offcanvas-body">
-            @foreach (var item in Model)
-            {
-                <div class="post">
 
-                    <h1>
-                        @Html.DisplayFor(modelItem => item.type)
-                    </h1>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.text)
-                    </p>
-                    <div>
-                        @{
-                            if (item.file != null)
-                            {
-                                @Html.Raw("<img style='display: block; width: auto; height: auto; max-width: 100%; box-shadow: 3px 4px 5px #000;' src=\"data:image/jpeg;base64," + Convert.ToBase64String(item.file) + "\" />")
-                                ;
-                            }
-                            else
-                            {
-                                <p>картинки нет и не будет </p>
-                            }
+    @section DropMenu{
+        <li class="menu_item">
+            <a href="https://e.mospolytech.ru/#/home" style=" text-decoration:none; ">
+                <button class="btn btn-light" type="button" style="width:100%">Личный кабинет Политеха</button>
+            </a>
+        </li>
+        <hr class="hr"/>
 
-                        }
-                    </div>
-                    
-                    <p id="datetime">
-                        Дата: @Html.DisplayFor(modelItem => item.datetime)
-                    </p>
-                    <hr class="hr" />
-                </div>
-            }
-        </div>
-    </div>
-    <hr class="hr" />
-    <div class="lk-chapter">
+        <li>
+            <a asp-controller="Users" asp-action="Details" asp-route-id="@User.Identity.Name.ToString()">
+                <button class="btn btn-light" type="button" style="width:100%">Профиль</button>
+            </a>
+        </li>
+        <hr class="hr" />
+
+        <li class="menu_item">
+            <a asp-controller="Users" asp-action="Logout" >
+                <button class="btn btn-danger" type="button" style="width:100%">Выйти из аккаунта</button>
+            </a>
+        </li>
+       
+
+       
+    }
+   
+    <div>
         <h2>Домашнее задание</h2>
-        <!--<button onclick="document.location='путь до формы' class="btn btn-secondary">Добавить обязательные задания</button>-->
-        <button class="btn btn-secondary">Добавить обязательные задания</button>
-    </div>
-    <hr class="hr"/>
-    <div class="lk-chapter">
-        <h2>Дедлайны по дз</h2>
-        <button class="btn btn-secondary">Добавить срок сдачи дз</button>
-    </div>    
+        <a asp-controller="Homework" asp-action="Create">
+            <button class="btn btn-secondary">Добавить обязательные задания</button>
+        </a>
+        <div>
+            <div class="offcanvas-body">
+                @foreach (var item in Model)
+                {
+                    <div class="lk-chapter">
 
+                        <h1>
+                           Предмет @Html.DisplayFor(modelItem => item.subject)
+                        </h1>
+                        <hr class="hr" />
+                        <p>
+                            <h2>Задание</h2> <br><br>@Html.DisplayFor(modelItem => item.text)
+                        </p>
+                        <hr class="hr" />
+                        <p id="datetime">
+                            Дата сдачи работы, просрочишь = смерть: @Html.DisplayFor(modelItem => item.deadline)
+                        </p>                       
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+   
 }
+<style>
+    .menu_item {
+        margin-left:10px;
+        margin-right:10px;
+        transition: all 0.3s ease-out;
+    }
+
+        .menu_item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-out;
+        }
+
+    .hr{
+        background-color: #ffffff;
+        margin:30px;
+    }
+</style>
+    

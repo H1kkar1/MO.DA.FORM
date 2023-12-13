@@ -181,3 +181,9 @@ input {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.DropMenu {
+    min-height: 100px;
+    min-width: 300px;
+    background: #2c2c2c;
+}
+   
