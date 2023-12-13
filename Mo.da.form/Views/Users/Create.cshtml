@@ -1,4 +1,4 @@
-﻿@model MO.DA.FORM.Models.User
+﻿@model MO.DA.FORM.Models.UserViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -7,41 +7,44 @@
 <link rel="stylesheet" href="~/css/Form.css"/>
 <div class="row">
     <div class="col-md-4">
-        <h1 style="margin: 50px 530px;">Регистарация</h1>
+        <h1 aligin = "centered">Регистрация</h1>
         <form asp-action="Create" class="reg_form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
+                <label asp-for="name" class="control-label">Введите имя пользователя</label>
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
+                <label asp-for="email" class="control-label">Введите email</label>
                 <input asp-for="email" class="form-control" />
                 <span asp-validation-for="email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="password" class="control-label"></label>
+                <label asp-for="password" class="control-label">Введите пароль</label>
                 <input asp-for="password" class="form-control" />
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="group" class="control-label"></label>
+                <label asp-for="proverka_password" class="control-label">Повторите пароль</label>
+                <input asp-for="proverka_password" class="form-control" />
+                <span asp-validation-for="proverka_password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="group" class="control-label">Введите группу</label>
                 <input asp-for="group" class="form-control" />
                 <span asp-validation-for="group" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
+                    Староста?
                     <input class="form-check-input" asp-for="leader" /> @Html.DisplayNameFor(model => model.leader)
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Зарегистироваться" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

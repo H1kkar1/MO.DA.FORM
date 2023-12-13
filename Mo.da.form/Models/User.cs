@@ -11,6 +11,19 @@ namespace MO.DA.FORM.Models
         public string password { get; set; }
         public string group { get; set; }
         public bool leader { get; set; }
+    } 
+    public class UserViewModel
+    {
+        [Key]
+        public Guid id { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        [DataType(DataType.Password)]
+        public string password { get; set; }
+        [DataType(DataType.Password)]
+        public string proverka_password { get; set; }
+        public string group { get; set; }
+        public bool leader { get; set; }
     }
 }
 

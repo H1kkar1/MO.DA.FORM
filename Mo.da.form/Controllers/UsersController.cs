@@ -32,13 +32,6 @@ namespace MO.DA.FORM.Controllers
             return heshpasswd;
         }
       
-        // GET: Users
-        public async Task<IActionResult> Index()
-        {
-              return _context.User != null ? 
-                          View(await _context.User.ToListAsync()) :
-                          Problem("Entity set 'DataContext.User'  is null.");
-        }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(Guid? id)
@@ -67,15 +60,23 @@ namespace MO.DA.FORM.Controllers
         // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,email,password,group,leader")] User user)
+        public async Task<IActionResult> Create([Bind("id,name,email,password,proverka_password,group,leader")] UserViewModel user)
         {
             if (ModelState.IsValid)
-            {                
-                user.password = get_hash_paswd(user.password);
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                await Authenticate(user);
-                return RedirectToAction(nameof(Index));
+            {   
+                if(user.proverka_password == user.password)
+                {
+                    User user1 = new User() { email = user.email, password = user.password, group = user.group, id = user.id, leader = user.leader, name = user.name };
+                    user1.password = get_hash_paswd(user1.password);
+                    _context.Add(user1);
+                    await _context.SaveChangesAsync();
+                    await Authenticate(user1);
+                }
+                else
+                {
+                    ModelState.AddModelError("password", "Неправельно введён пароль");
+                }
+                
             }
             return View(user);
         }
