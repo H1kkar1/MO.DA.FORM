@@ -7,7 +7,7 @@ namespace MO.DA.FORM.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MODAFORM;Username=postgres;Password=1305");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MODAFORM;Username=postgres;Password=pi314159");//1305
         }
 
 

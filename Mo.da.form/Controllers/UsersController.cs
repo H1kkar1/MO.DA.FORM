@@ -165,7 +165,7 @@ namespace MO.DA.FORM.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Lending","Home");
         }
 
         private bool UserExists(Guid id)

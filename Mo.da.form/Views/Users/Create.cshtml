@@ -22,22 +22,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="password" class="control-label">Введите пароль</label>
-                <input asp-for="password" class="form-control" />
+                <input asp-for="password" class="form-control" class="form-control" . />
                 <span asp-validation-for="password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="proverka_password" class="control-label">Повторите пароль</label>
-                <input asp-for="proverka_password" class="form-control" />
+                <input asp-for="proverka_password" class="form-control" class="form-control" />
                 <span asp-validation-for="proverka_password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="group" class="control-label">Введите группу</label>
-                <input asp-for="group" class="form-control" />
+                <label asp-for="group" class="control-label" >Введите группу</label>
+                <input asp-for="group" class="form-control" placeholder="Формат: ***-****" />
                 <span asp-validation-for="group" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    Староста?
+                    Вы староста?
                     <input class="form-check-input" asp-for="leader" /> @Html.DisplayNameFor(model => model.leader)
                 </label>
             </div>
