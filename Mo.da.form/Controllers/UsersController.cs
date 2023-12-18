@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System.Text.RegularExpressions;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -18,6 +19,8 @@ namespace MO.DA.FORM.Controllers
     {
         private readonly DataContext _context;
         public MD5 md5 = MD5.Create();
+        private readonly Regex mailreg = new Regex(@"\w+@");
+        private readonly Regex groupreg = new Regex(@"2\d{2}-\d");
         public UsersController(DataContext context)
         {
             _context = context;
@@ -31,7 +34,23 @@ namespace MO.DA.FORM.Controllers
 
             return heshpasswd;
         }
-      
+        
+        public bool RegexValidation(UserViewModel user)
+        {
+            if (!(mailreg.Matches(user.email).Count > 0))
+            {
+                return false;
+            }
+            if (!(groupreg.Matches(user.group).Count > 0))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+        }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(Guid? id)
@@ -63,7 +82,9 @@ namespace MO.DA.FORM.Controllers
         public async Task<IActionResult> Create([Bind("id,name,email,password,proverka_password,group,leader")] UserViewModel user)
         {
             if (ModelState.IsValid)
-            {   
+            {
+                if (!RegexValidation(user)) { ModelState.AddModelError("email", "Неправельно введён Email или группа"); }
+
                 if(user.proverka_password == user.password)
                 {
                     User user1 = new User() { email = user.email, password = user.password, group = user.group, id = user.id, leader = user.leader, name = user.name };
@@ -74,7 +95,7 @@ namespace MO.DA.FORM.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("password", "Неправельно введён пароль");
+                    ModelState.AddModelError("password", "Пароли не совпадают");
                 }
                 
             }

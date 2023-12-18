@@ -13,6 +13,8 @@ using System.Text;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.Debugger.Contracts.HotReload;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -65,29 +67,41 @@ namespace MO.DA.FORM.Controllers
         [ValidateAntiForgeryToken]  
         public async Task<IActionResult> Create([Bind("post_id,type,text,datetime,file")] PostViewModel pwm)
         {
+            
+
             if (ModelState.IsValid)
             {
-                Post post = new Post() { post_id = pwm.post_id, text = pwm.text, type = pwm.type };
-                post.datetime = $"{pwm.datetime.Day}.{pwm.datetime.Month}.{pwm.datetime.Year}";
-                if (pwm.file != null)
+                Regex regex = new Regex("image/");
+                MatchCollection matches = regex.Matches(pwm.file.ContentType);
+                if (matches.Count>0 | pwm.file == null)
                 {
-                    byte[] imageData = null;
-                    // считываем переданный файл в массив байтов
-                    using (var binaryReader = new BinaryReader(pwm.file.OpenReadStream()))
+                    Post post = new Post() { post_id = pwm.post_id, text = pwm.text, type = pwm.type };
+                    post.datetime = $"{pwm.datetime.Day}.{pwm.datetime.Month}.{pwm.datetime.Year}";
+                    if (pwm.file != null)
                     {
-                        imageData = binaryReader.ReadBytes((int)pwm.file.Length);
+                        byte[] imageData = null;
+                        // считываем переданный файл в массив байтов
+                        using (var binaryReader = new BinaryReader(pwm.file.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)pwm.file.Length);
+                        }
+                        // установка массива байтов
+                        post.file = imageData;
                     }
-                    // установка массива байтов
-                    post.file = imageData;
+                    else { post.file = null; }
+
+
+                    _dbContext.Add(post);
+                    await _dbContext.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                else { post.file = null; }
+                else
+                {
+                    ModelState.AddModelError("file", "Можно загружать только фотографию");
+                }
 
-
-                _dbContext.Add(post);
-                await _dbContext.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            return View(pwm);
+                return View(pwm);
         }
 
         // GET: Posts/Edit/5

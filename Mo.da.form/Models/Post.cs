@@ -13,7 +13,7 @@ namespace MO.DA.FORM.Models
         public string text { get; set; }
         public string datetime { get; set; }
 
-        [BindingBehavior(BindingBehavior.Never)]
+        [BindingBehavior(BindingBehavior.Optional)]
         public byte[]? file { get; set; }
 
     } 
@@ -28,7 +28,7 @@ namespace MO.DA.FORM.Models
         [DataType(DataType.Date)]
         public DateTime datetime { get; set; }
 
-        [BindingBehavior(BindingBehavior.Optional)]
+       // [BindingBehavior(BindingBehavior.Optional)]
         public IFormFile? file { get; set; }
 
     }
