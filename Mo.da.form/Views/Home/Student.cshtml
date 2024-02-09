@@ -35,7 +35,7 @@
         </a>
         <div>
             <div class="offcanvas-body">
-                @foreach (var item in Model)
+                @foreach (var item in Model.Reverse())
                 {
                     <div class="lk-chapter">
 
@@ -49,7 +49,10 @@
                         <hr class="hr" />
                         <p id="datetime">
                             Дата сдачи работы, просрочишь = смерть: @Html.DisplayFor(modelItem => item.deadline)
-                        </p>                       
+                        </p>
+                        <a asp-controller="Homework" asp-action="Delete" asp-route-id="@item.id"><button> Удалить</button></a>
+                        
+                       
                     </div>
                 }
             </div>

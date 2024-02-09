@@ -21,11 +21,14 @@ namespace MO.DA.FORM.Controllers
         public MD5 md5 = MD5.Create();
         private readonly Regex mailreg = new Regex(@"\w+@");
         private readonly Regex groupreg = new Regex(@"2\d{2}-\d");
+
+        //Подключение бд
         public UsersController(DataContext context)
         {
             _context = context;
         }
 
+        //Хеширование пароля
         public string get_hash_paswd(string password)
         {
             byte[] passBytes = Encoding.ASCII.GetBytes(password);// преобразуем строку в массив байтов
@@ -35,6 +38,7 @@ namespace MO.DA.FORM.Controllers
             return heshpasswd;
         }
         
+        //Проварка через регулярные выражения
         public bool RegexValidation(UserViewModel user)
         {
             if (!(mailreg.Matches(user.email).Count > 0))
@@ -45,14 +49,13 @@ namespace MO.DA.FORM.Controllers
             {
                 return false;
             }
-            else
-            {
-                return true;
-            }
-            
+
+            return true;
+
+
         }
 
-        // GET: Users/Details/5
+        // GET: Users/Details/5 (ПРОФИЛЬ)
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.User == null)
@@ -70,28 +73,29 @@ namespace MO.DA.FORM.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
+        // GET: Users/Create    (РЕГИСТРЦИЯ)
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Users/Create   (РЕГИСТРАЦИЯ)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,name,email,password,proverka_password,group,leader")] UserViewModel user)
         {
             if (ModelState.IsValid)
             {
-                if (!RegexValidation(user)) { ModelState.AddModelError("email", "Неправельно введён Email или группа"); }
+                if (!(RegexValidation(user))) { ModelState.AddModelError("email", "Неправельно введён Email или группа"); }
 
-                if(user.proverka_password == user.password)
+                else if(user.proverka_password == user.password)
                 {
                     User user1 = new User() { email = user.email, password = user.password, group = user.group, id = user.id, leader = user.leader, name = user.name };
                     user1.password = get_hash_paswd(user1.password);
                     _context.Add(user1);
                     await _context.SaveChangesAsync();
                     await Authenticate(user1);
+                    return Redirect("~/Home/Student");
                 }
                 else
                 {
@@ -102,7 +106,7 @@ namespace MO.DA.FORM.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
+        // GET: Users/Edit/5    (РЕАДКТИРОВАНИЕ ПРОФИЛЯ)
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.User == null)
@@ -118,7 +122,7 @@ namespace MO.DA.FORM.Controllers
             return View(user);
         }
 
-        
+        // POST: Users/Edit/5    (РЕАДКТИРОВАНИЕ ПРОФИЛЯ)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("id,name,email,password,group,leader")] User user)
@@ -152,7 +156,7 @@ namespace MO.DA.FORM.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
+        // GET: Users/Delete/5  (УДАЛЕНИЕ АККАУНТА)
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.User == null)
@@ -186,6 +190,8 @@ namespace MO.DA.FORM.Controllers
             }
             
             await _context.SaveChangesAsync();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Response.Cookies.Delete("leader");
             return RedirectToAction("Lending","Home");
         }
 
@@ -218,7 +224,7 @@ namespace MO.DA.FORM.Controllers
                 }
                 
             }
-            return View(model);
+            return Redirect("~/Home/Student");
             
         }
         [ValidateAntiForgeryToken]
@@ -230,7 +236,7 @@ namespace MO.DA.FORM.Controllers
                 new Claim("leader", user.leader.ToString()),             
             };
             // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims,"ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity id = new ClaimsIdentity(claims,"UserCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id), new AuthenticationProperties
             {
@@ -238,7 +244,6 @@ namespace MO.DA.FORM.Controllers
             });
 
         }
-        [Authorize(Policy = "Limit")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

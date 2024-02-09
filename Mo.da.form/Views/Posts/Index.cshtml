@@ -11,7 +11,7 @@
     <a asp-action="Create">Создать публикацию</a>
 </p>
 
-@foreach (var item in Model)
+@foreach (var item in Model.Reverse())
 {
     <div class="post">
         <h1>
