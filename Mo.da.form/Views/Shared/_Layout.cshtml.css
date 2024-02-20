@@ -28,8 +28,8 @@ footer {
 }
 
 .top-nav-bar {
-    margin:-125px 0px 0px 630px; 
-    max-width:988px;
+    margin: -125px 0px 0px 630px;
+    max-width: 730px;
 }
     .top-nav-bar li {
         background: rgba(73.51,73.51,73.51,1);
@@ -161,6 +161,7 @@ button.accept-policy {
         }
 
 label {
+    font-family: 'Gilroy-Regular';
     display: block;
     margin-bottom: 0.25rem;
 }
@@ -181,3 +182,18 @@ input {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.DropMenu {
+    min-height: 100px;
+    min-width: 300px;
+    background: #2c2c2c;
+}
+
+@font-face {
+    font-family: 'Gilroy-Regular';
+    src: url('../fonts/gilroy-regular.eot'); /* IE 9 Compatibility Mode */
+    src: url('../fonts/gilroy-regular.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+    url('../fonts/gilroy-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/gilroy-regular.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+    url('../fonts/gilroy-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/gilroy-regular.svg#gilroy-regular') format('svg'); /* Chrome < 4, Legacy iOS */
+}    
