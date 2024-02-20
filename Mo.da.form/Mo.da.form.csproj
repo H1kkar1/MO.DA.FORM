@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="infrastructure\Get_session\**" />
     <Compile Remove="wwwroot\Новая папка\**" />
+    <Content Remove="infrastructure\Get_session\**" />
     <Content Remove="wwwroot\Новая папка\**" />
+    <EmbeddedResource Remove="infrastructure\Get_session\**" />
     <EmbeddedResource Remove="wwwroot\Новая папка\**" />
+    <None Remove="infrastructure\Get_session\**" />
     <None Remove="wwwroot\Новая папка\**" />
   </ItemGroup>
 
@@ -28,19 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="infrastructure\Get_session\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Views\Posts\Create_homework.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Update="Views\Posts\Delete.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="Views\Posts\Details.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

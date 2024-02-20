@@ -6,6 +6,9 @@ using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.Text;
 using System;
+using MO.DA.FORM.infrastructure;
+using NuGet.Protocol;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -21,18 +24,14 @@ namespace MO.DA.FORM.Controllers
             _dbContext = dataContext;
         }
 
+        [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
-            return View();
+            return View();            
         }
 
         public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Auth()
         {
             return View();
         }
@@ -49,19 +48,32 @@ namespace MO.DA.FORM.Controllers
         {
             return View("~/Views/Home/Teacher.cshtml");
         }
-         public IActionResult Starosta_and_zam()
+        public IActionResult Starosta_and_zam()
         {
             return View("~/Views/Home/Starosta_and_zam.cshtml");
         }
-       public async Task<IActionResult> Student()
+        [Authorize]
+        public async Task<IActionResult> Student()
         {
-            return _dbContext.Post != null ?
-                        View(await _dbContext.Post.ToListAsync()) :
+            return _dbContext.Homework != null ?
+                        View(await _dbContext.Homework.ToListAsync()) :
                         Problem("Entity set 'DataContext.Post'  is null.");
         }
+
+        [HttpGet]
         public IActionResult Inf_of_pepod()
+        {          
+            return View();           
+        } 
+        public IActionResult Get_Schedule()
         {
-            return View("~/Views/Home/Inf_of_prepod.cshtml");
+            Schedule schedule = new Schedule();
+            HttpClient sharedClient = new()
+            {
+                BaseAddress = new Uri("https://e.mospolytech.ru"),
+            };
+            _ = schedule.GetAsync();
+            return View();
         }
         public IActionResult Lending()
         {

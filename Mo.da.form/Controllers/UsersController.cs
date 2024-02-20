@@ -9,6 +9,8 @@ using MO.DA.FORM.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace MO.DA.FORM.Controllers
 {
@@ -30,13 +32,6 @@ namespace MO.DA.FORM.Controllers
             return heshpasswd;
         }
       
-        // GET: Users
-        public async Task<IActionResult> Index()
-        {
-              return _context.User != null ? 
-                          View(await _context.User.ToListAsync()) :
-                          Problem("Entity set 'DataContext.User'  is null.");
-        }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(Guid? id)
@@ -65,14 +60,23 @@ namespace MO.DA.FORM.Controllers
         // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,email,password,group,leader")] User user)
+        public async Task<IActionResult> Create([Bind("id,name,email,password,proverka_password,group,leader")] UserViewModel user)
         {
             if (ModelState.IsValid)
-            {                
-                user.password = get_hash_paswd(user.password);
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            {   
+                if(user.proverka_password == user.password)
+                {
+                    User user1 = new User() { email = user.email, password = user.password, group = user.group, id = user.id, leader = user.leader, name = user.name };
+                    user1.password = get_hash_paswd(user1.password);
+                    _context.Add(user1);
+                    await _context.SaveChangesAsync();
+                    await Authenticate(user1);
+                }
+                else
+                {
+                    ModelState.AddModelError("password", "Неправельно введён пароль");
+                }
+                
             }
             return View(user);
         }
@@ -107,6 +111,7 @@ namespace MO.DA.FORM.Controllers
             {
                 try
                 {
+                    user.password = get_hash_paswd(user.password);
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
@@ -183,32 +188,40 @@ namespace MO.DA.FORM.Controllers
                 User user = await _context.User.FirstOrDefaultAsync(u => u.email == model.email && u.password == get_hash_paswd(model.password));
                 if (user != null)
                 {
-                    await Authenticate(model.email, model.leader.ToString()); // аутентификация
-
-                    return RedirectToAction("Index", "Home");
+                    await Authenticate(user);
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                else
+                {
+                    ModelState.AddModelError("Email", "Неправельно введён email или такого пользователя нет");
+                    return View(model);
+                }
+                
             }
             return View(model);
+            
         }
         [ValidateAntiForgeryToken]
-        private async Task Authenticate(string userName, string leader)
+        private async Task Authenticate(User user)
         {
-            // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, leader)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.id.ToString()),
+                new Claim("leader", user.leader.ToString()),             
             };
             // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity id = new ClaimsIdentity(claims,"ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id), new AuthenticationProperties
+            {
+                IsPersistent = true
+            });
+
         }
+        [Authorize(Policy = "Limit")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Login", "Users");
         }
     }
 }
