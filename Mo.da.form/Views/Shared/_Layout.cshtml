@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MO.DA.FORM</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/MO.DA.FORM.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/MO.DA.FORM.styles.css" asp-append-version="true" />
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3ba4526930.js" crossorigin="anonymous"></script>
 </head>
 
 
 
-<body style="background: #2c2c2c; font-size: 25px; color:white;">
+<body style="background: #2c2c2c; font-size: 25px; color:white; font-family: Gilroy-Regular; font-weight:lighter; font-style:normal; word-spacing:3px;">
     <div class="wrapper">
         <div id="header">
             <a asp-controller="Home" asp-action="Student">
                 <img src="~/img/logo.png" style="width:300px; float:left; margin: 30px 10px;" />
             </a>
-            
+
 
             <div style="width:250px; height:120px; margin:30px 370px;">
                 <label for="searh" style="color:white;"> Поиск по сайту</label>
@@ -26,101 +27,102 @@
             <div>
                 <ul class="d-flex justify-content-around top-nav-bar">
 
-                <li>
-                    <a href="https://online.mospolytech.ru" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
-                        <p class="nav_p">Перейти в СДО</p>
-                    </a>
-                </li>
-                <li>
+                    <li>
+                        <a class="a_link" href="https://online.mospolytech.ru">
+                            Перейти в СДО
+                        </a>
+                    </li>
+                    <li>
+                        <a class="a_link" href="https://rasp.dmami.ru/">
+                            Пары
+                        </a>
+                    </li>
+                    <li>
+                        <a class="a_link" href="https://rasp.dmami.ru/session">
+                           Cессия
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Student" style="color: #FFFFFF;overflow: hidden;font-size: 23px;text-decoration: none; text-align: center;bottom: auto; margin-left:auto;margin-right:auto">
+                            Личный кабинет
+                        </a>
+                    </li>
 
-                    <a href="https://rasp.dmami.ru/" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
-                        <p class="nav_p">Расписание занятий</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://rasp.dmami.ru/session" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
-                        <p class="nav_p">Расписание сессии</p>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Student" style=" color: #FFFFFF;overflow: hidden; font-size: 25px; text-decoration: none; text-align: center; bottom:auto;">
-                        <p class="nav_p">Личный кабинет</p>
-                    </a>
-                </li>
-
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="overflow: hidden; text-decoration: none; text-align: center; bottom:auto;float:right;">
+                    <div>
+                        <button class="nav-link dropdown-toggle DropMenu" type="button" data-bs-toggle="dropdown">
+                            Меню
                         </button>
                         <ul class="dropdown-menu DropMenu" aria-labelledby="dropdownMenuButton1">
-                            <a asp-controller="Posts" asp-action="Index"> 
+                            <a asp-controller="Posts" asp-action="Index">
                                 <button class="btn btn-light"
                                         style="width:100%">
                                     Новости
                                 </button>
                             </a>
-                            
-
                             <hr class="hr" />
-                            @RenderSection("DropMenu",false)
+                            @RenderSection("DropMenu", false)
                         </ul>
                     </div>
 
                 </ul>
-        </div>
-       
-    </div>
-
-
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="text-center" style="border-top: 1px solid #fff;">
-        <!-- Grid container -->
-        <div class="container p-4 lite" style="border-radius: 20px 20px 0 0;">
-            <!--Grid row-->
-            <div class="row lite" >
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 lite">
-                    <h5 class="text-uppercase">Цели которые мы приследуем:</h5>
-                    <p>
-                        Мы хотим сделать WEB-приложение для вашего удобства, так что пользуйтесь, на здоровье.
-                    </p>
-                </div>
-                <!--Grid column-->
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 lite">
-                    <h5 class="text-uppercase">Удачи в освоении)</h5>
-                    <p>
-                        По всем вопросам обращаться по контактам указанным ниже.
-                    </p>
-                </div>
-                <!--Grid column-->
             </div>
-            <!--Grid row-->
+
         </div>
-        <!-- Grid container -->
-        <!-- Copyright -->
-        <div class="text-center p-3 lite" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2023 Copyright: <a class="text-lite " href="https://mdbootstrap.com/"><p class="gain-center">MDBootstrap.com</p></a>
-            <ul class="social-icons-1">
-                <li><a href="https://vk.com/club223769491"><i class="fa fa-vk"></i> </a></li>
-                <li><a href="https://t.me/mospolytech"><i class="fa fa-telegram"></i></a></li>
-            </ul>
-        </div>
-       
-        <!-- Copyright -->
-    </footer>
- 
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="text-center" style="border-top: 1px solid #fff;">
+            <!-- Grid container -->
+            <div class="container p-4 lite" style="border-radius: 20px 20px 0 0;">
+                <!--Grid row-->
+                <div class="row lite">
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0 lite">
+                        <h2>Цели которые мы приследуем:</h2>
+                        <br />
+                        <p>
+                            Мы хотим сделать WEB-приложение для вашего удобства, так что пользуйтесь на здоровье.
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0 lite">
+                        <h2>Удачи в освоении)</h2>
+                        <br />
+                        <p>
+                            По всем вопросам обращаться по контактам указанным ниже.
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3 lite" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2024 Copyright: <a class="text-lite " href="https://github.com/H1kkar1/MO.DA.FORM"><p class="gain-center">MO.DA.FORM</p></a>
+                <ul class="social-icons-1">
+                    <li><a href="https://vk.com/club223769491"><i class="fa fa-vk"></i> </a></li>
+                    <li><a href="https://t.me/mospolytech"><i class="fa fa-telegram"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Copyright -->
+        </footer>
+
+
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
     </div>
+
 </body>
 </html>

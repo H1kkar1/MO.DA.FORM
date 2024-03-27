@@ -21,7 +21,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization(opts => {
     // устанавливаем ограничение по возрасту
-    opts.AddPolicy("LeaderLimit", policy => policy.RequireClaim("leader", "True")) ;
+    opts.AddPolicy("LeaderLimit", policy => policy.RequireClaim("leader", "True"));
 });
 builder.Services.AddHttpContextAccessor();
 var app = builder.Build();

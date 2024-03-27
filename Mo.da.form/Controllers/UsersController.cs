@@ -20,7 +20,7 @@ namespace MO.DA.FORM.Controllers
         private readonly DataContext _context;
         public MD5 md5 = MD5.Create();
         private readonly Regex mailreg = new Regex(@"\w+@");
-        private readonly Regex groupreg = new Regex(@"2\d{2}-\d");
+        private readonly Regex groupreg = new Regex(@"\d{3}-\d");
 
         //Подключение бд
         public UsersController(DataContext context)

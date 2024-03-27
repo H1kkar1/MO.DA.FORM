@@ -1,0 +1,35 @@
+﻿.menu_item {
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: all 0.3s ease-out;
+}
+
+.menu_item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-out;
+}
+
+.hr {
+    background-color: #ffffff;
+    margin: 30px;
+}
+
+#datetime {
+    animation: color-change 5s infinite;
+}
+
+@keyframes color-change {
+    0% {
+        color: white;
+    }
+    25% {
+        color: red;
+    }
+
+    100% {
+        color: white;
+    }
+}
+
+

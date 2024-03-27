@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MO.DA.FORM.Models;
 
@@ -19,8 +14,7 @@ namespace MO.DA.FORM.Controllers
             _context = context;
         }
 
-        // GET: Homework
-       
+
 
         // GET: Homework/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -48,8 +42,6 @@ namespace MO.DA.FORM.Controllers
         }
 
         // POST: Homework/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,deadline,text,subject")] HomeworkViewModel homework)
@@ -60,7 +52,7 @@ namespace MO.DA.FORM.Controllers
                 work.deadline = $"{homework.deadline.Day}.{homework.deadline.Month}.{homework.deadline.Year}";
                 _context.Add(work);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Student","Home");
+                return RedirectToAction("Student", "Home");
             }
             return View(homework);
         }
@@ -85,7 +77,7 @@ namespace MO.DA.FORM.Controllers
         // POST: Homework/Edit/5
         [HttpPost]
         [Authorize(Policy = "LeaderLimit")]
-        public async Task<IActionResult> Edit(int id, [Bind("id,text,subject")] Homework homework)
+        public async Task<IActionResult> Edit(int id, [Bind("id,deadline,text,subject")] Homework homework)
         {
             if (id != homework.id)
             {
@@ -112,7 +104,7 @@ namespace MO.DA.FORM.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(homework);
+            return Redirect("~/Home/Student");
         }
 
         // GET: Homework/Delete/5
@@ -148,14 +140,14 @@ namespace MO.DA.FORM.Controllers
             {
                 _context.Homework.Remove(homework);
             }
-            
+
             await _context.SaveChangesAsync();
             return Redirect("~/Home/Student");
         }
 
         private bool HomeworkExists(int id)
         {
-          return (_context.Homework?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_context.Homework?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

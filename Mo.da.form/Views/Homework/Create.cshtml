@@ -10,11 +10,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" accept-charset="utf-8">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="text" class="control-label">Задание</label>
-                <textarea class="form-control" oninput="document.querySelector('input#inp').value = this.value;" placeholder="Введите текст домашнего задания и , при необходимости, прикрепите ссылки на файлы с заданиями" style="height:500px; width:100%;"></textarea>
+                <textarea class="form-control" oninput="document.querySelector('input#inp').value = this.value;" placeholder="Введите текст домашнего задания и при необходимости, прикрепите ссылки на файлы с заданиями" style="height:500px; width:100%;"></textarea>
                 <input id="inp" asp-for="text" style="display:none" />
                 <span asp-validation-for="text" class="text-danger"></span>
             </div>

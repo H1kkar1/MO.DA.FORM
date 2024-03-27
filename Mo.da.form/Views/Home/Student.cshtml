@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<MO.DA.FORM.Models.Homework>
 @{
     <link rel="stylesheet" href="~/css/lk.css"/>
+    <link rel="stylesheet" href="~/css/Homework.css"/>
 
 
     @section DropMenu{
@@ -39,18 +40,25 @@
                 {
                     <div class="lk-chapter">
 
-                        <h1>
+                        <h1 style="font-family:Gilroy;">
                            Предмет @Html.DisplayFor(modelItem => item.subject)
                         </h1>
                         <hr class="hr" />
                         <p>
-                            <h2>Задание</h2> <br><br>@Html.DisplayFor(modelItem => item.text)
+                            <h2>Задание</h2> <br><br><pre>@Html.DisplayFor(modelItem => item.text)</pre>
                         </p>
-                        <hr class="hr" />
-                        <p id="datetime">
-                            Дата сдачи работы, просрочишь = смерть: @Html.DisplayFor(modelItem => item.deadline)
+                        <hr class="hr"/>
+
+                        <p id="datetime" style="">
+                            Дата сдачи работы, просрочишь = смерть:
+                        @Html.DisplayFor(modelItem => item.deadline)
                         </p>
-                        <a asp-controller="Homework" asp-action="Delete" asp-route-id="@item.id"><button> Удалить</button></a>
+                        <a asp-controller="Homework" asp-action="Delete" asp-route-id="@item.id"><button class="btn btn-danger"> Удалить</button></a>
+                        <a asp-controller="Homework" asp-action="Edit" asp-route-id="@item.id">
+                            <button class="btn btn-outline-light" style="float:right">
+                                Редактировать
+                            </button>
+                        </a>
                         
                        
                     </div>
@@ -60,22 +68,4 @@
     </div>
    
 }
-<style>
-    .menu_item {
-        margin-left:10px;
-        margin-right:10px;
-        transition: all 0.3s ease-out;
-    }
-
-        .menu_item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2);
-            transition: all 0.3s ease-out;
-        }
-
-    .hr{
-        background-color: #ffffff;
-        margin:30px;
-    }
-</style>
     

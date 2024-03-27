@@ -10,13 +10,13 @@
 
   <ItemGroup>
     <Compile Remove="infrastructure\Get_session\**" />
-    <Compile Remove="wwwroot\Новая папка\**" />
     <Content Remove="infrastructure\Get_session\**" />
-    <Content Remove="wwwroot\Новая папка\**" />
     <EmbeddedResource Remove="infrastructure\Get_session\**" />
-    <EmbeddedResource Remove="wwwroot\Новая папка\**" />
     <None Remove="infrastructure\Get_session\**" />
-    <None Remove="wwwroot\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\fonts\GilroyRegular.ttf" />
   </ItemGroup>
 
   <ItemGroup>

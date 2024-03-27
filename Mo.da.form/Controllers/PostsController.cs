@@ -36,6 +36,17 @@ namespace MO.DA.FORM.Controllers
                         View(await _dbContext.Post.ToListAsync()) :
                         Problem("Entity set 'DataContext.Post'  is null.");
         }
+        
+        // GET: Posts/Back-End
+        public IActionResult FiltredPost(string type)
+        {
+            if( _dbContext.Post != null)
+            {
+                var filtred_posts = _dbContext.Post.Where(p => p.type == type);
+                return View("Index",filtred_posts);
+            }
+            return Problem("Entity set 'DataContext.Post' is null.");            
+        }
 
         // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)

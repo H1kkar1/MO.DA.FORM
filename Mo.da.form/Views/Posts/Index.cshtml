@@ -7,10 +7,25 @@
 <link rel="stylesheet" href="~/css/Post.css"/>
 <h1>Новостная лента</h1>
 
-<p>
-    <a asp-action="Create">Создать публикацию</a>
-</p>
-
+<div style="display:flex;">
+    <div>
+        <a asp-action="Create">
+            <button class="btn btn-success">Создать публикацию</button>
+        </a>
+    </div> 
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Сортировать по типу поста
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            @foreach (var item in Model.Reverse())
+            {
+                <li><a asp-action="FiltredPost" asp-route-type="@item.type">@Html.DisplayFor(modelItem => item.type)</a></li>
+            }
+        </ul>
+    </div> 
+</div>
+<hr class="hr" />
 @foreach (var item in Model.Reverse())
 {
     <div class="post">
@@ -43,3 +58,4 @@
         </p>
     </div>
 }
+<a asp-action="Index">Назад</a>
