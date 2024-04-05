@@ -23,17 +23,41 @@
             <a asp-controller="Users" asp-action="Logout" >
                 <button class="btn btn-danger" type="button" style="width:100%">Выйти из аккаунта</button>
             </a>
-        </li>
-       
-
-       
+        </li>       
     }
-   
+    <h2>Домашнее задание</h2>
+
+    <div style="display:flex;">
+        <div>
+            <a asp-controller="Homework" asp-action="Create">
+                <button class="btn btn-secondary">Добавить обязательные задания</button>
+            </a>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Сортировать по типу поста
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                @{
+                    List<string> pov = new List<string> { };
+
+                    foreach (var item in Model.Reverse())
+                    {
+                    if (!pov.Exists(i => i == item.subject))
+                        {
+                            pov.Add(item.subject);
+                            <li><a asp-action="FiltredHomework" asp-route-subject="@item.subject">@Html.DisplayFor(modelItem => item.subject)</a></li>
+                        }
+
+                    }
+                }
+                
+            </ul>
+        </div>
+    </div>
+
     <div>
-        <h2>Домашнее задание</h2>
-        <a asp-controller="Homework" asp-action="Create">
-            <button class="btn btn-secondary">Добавить обязательные задания</button>
-        </a>
+        
         <div>
             <div class="offcanvas-body">
                 @foreach (var item in Model.Reverse())

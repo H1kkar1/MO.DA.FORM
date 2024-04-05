@@ -7,24 +7,32 @@ namespace MO.DA.FORM.Controllers
 {
     public class HomeworkController : Controller
     {
-        private readonly DataContext _context;
+        private readonly DataContext _dbContext;
 
         public HomeworkController(DataContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
-
+        public IActionResult FiltredHomework(string subject)
+        {
+            if (_dbContext.Post != null)
+            {   
+                var filtred_homework = _dbContext.Homework.Where(p => p.subject == subject);
+                return View("Home/Student", filtred_homework);
+            }
+            return Problem("Entity set 'DataContext.Post' is null.");
+        }
 
         // GET: Homework/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Homework == null)
+            if (id == null || _dbContext.Homework == null)
             {
                 return NotFound();
             }
 
-            var homework = await _context.Homework
+            var homework = await _dbContext.Homework
                 .FirstOrDefaultAsync(m => m.id == id);
             if (homework == null)
             {
@@ -50,8 +58,8 @@ namespace MO.DA.FORM.Controllers
             {
                 Homework work = new Homework() { id = homework.id, text = homework.text, subject = homework.subject };
                 work.deadline = $"{homework.deadline.Day}.{homework.deadline.Month}.{homework.deadline.Year}";
-                _context.Add(work);
-                await _context.SaveChangesAsync();
+                _dbContext.Add(work);
+                await _dbContext.SaveChangesAsync();
                 return RedirectToAction("Student", "Home");
             }
             return View(homework);
@@ -61,12 +69,12 @@ namespace MO.DA.FORM.Controllers
         [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Homework == null)
+            if (id == null || _dbContext.Homework == null)
             {
                 return NotFound();
             }
 
-            var homework = await _context.Homework.FindAsync(id);
+            var homework = await _dbContext.Homework.FindAsync(id);
             if (homework == null)
             {
                 return NotFound();
@@ -88,8 +96,8 @@ namespace MO.DA.FORM.Controllers
             {
                 try
                 {
-                    _context.Update(homework);
-                    await _context.SaveChangesAsync();
+                    _dbContext.Update(homework);
+                    await _dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -111,12 +119,12 @@ namespace MO.DA.FORM.Controllers
         [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Homework == null)
-            {
+            if (id == null || _dbContext.Homework == null)
+            {   
                 return NotFound();
             }
 
-            var homework = await _context.Homework
+            var homework = await _dbContext.Homework
                 .FirstOrDefaultAsync(m => m.id == id);
             if (homework == null)
             {
@@ -131,23 +139,23 @@ namespace MO.DA.FORM.Controllers
         [Authorize(Policy = "LeaderLimit")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Homework == null)
+            if (_dbContext.Homework == null)
             {
                 return Problem("Entity set 'DataContext.Homework'  is null.");
             }
-            var homework = await _context.Homework.FindAsync(id);
+            var homework = await _dbContext.Homework.FindAsync(id);
             if (homework != null)
             {
-                _context.Homework.Remove(homework);
+                _dbContext.Homework.Remove(homework);
             }
 
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
             return Redirect("~/Home/Student");
         }
 
         private bool HomeworkExists(int id)
         {
-            return (_context.Homework?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_dbContext.Homework?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

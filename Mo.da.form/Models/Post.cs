@@ -27,10 +27,15 @@ namespace MO.DA.FORM.Models
         
         [DataType(DataType.Date)]
         public DateTime datetime { get; set; }
-
-       // [BindingBehavior(BindingBehavior.Optional)]
         public IFormFile? file { get; set; }
 
+    }
+
+    public class TypePost
+    {
+        [Key]
+        public int id { get; set;}
+        public string type { get; set; }
     }
 }
 
