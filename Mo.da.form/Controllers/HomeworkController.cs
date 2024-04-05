@@ -19,7 +19,7 @@ namespace MO.DA.FORM.Controllers
             if (_dbContext.Post != null)
             {   
                 var filtred_homework = _dbContext.Homework.Where(p => p.subject == subject);
-                return View("Home/Student", filtred_homework);
+                return View("~/Views/Home/Student.cshtml", filtred_homework);
             }
             return Problem("Entity set 'DataContext.Post' is null.");
         }
@@ -56,7 +56,7 @@ namespace MO.DA.FORM.Controllers
         {
             if (ModelState.IsValid)
             {
-                Homework work = new Homework() { id = homework.id, text = homework.text, subject = homework.subject };
+                Homework work = new Homework() { id = homework.id, text = homework.text, subject = homework.subject.ToLower() };
                 work.deadline = $"{homework.deadline.Day}.{homework.deadline.Month}.{homework.deadline.Year}";
                 _dbContext.Add(work);
                 await _dbContext.SaveChangesAsync();

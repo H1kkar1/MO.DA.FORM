@@ -30,7 +30,7 @@
     <div style="display:flex;">
         <div>
             <a asp-controller="Homework" asp-action="Create">
-                <button class="btn btn-secondary">Добавить обязательные задания</button>
+                <button class="btn btn-success">Добавить обязательные задания</button>
             </a>
         </div>
         <div class="dropdown">
@@ -43,10 +43,10 @@
 
                     foreach (var item in Model.Reverse())
                     {
-                    if (!pov.Exists(i => i == item.subject))
+                    if (!pov.Exists(i => i == item.subject.ToLower()))
                         {
-                            pov.Add(item.subject);
-                            <li><a asp-action="FiltredHomework" asp-route-subject="@item.subject">@Html.DisplayFor(modelItem => item.subject)</a></li>
+                            pov.Add(item.subject.ToLower());
+                            <li><a asp-controller="Homework" asp-action="FiltredHomework" asp-route-subject="@item.subject">@Html.DisplayFor(modelItem => item.subject)</a></li>
                         }
 
                     }
@@ -64,12 +64,12 @@
                 {
                     <div class="lk-chapter">
 
-                        <h1 style="font-family:Gilroy;">
+                        <h1>
                            Предмет @Html.DisplayFor(modelItem => item.subject)
                         </h1>
                         <hr class="hr" />
                         <p>
-                            <h2>Задание</h2> <br><br><pre>@Html.DisplayFor(modelItem => item.text)</pre>
+                            <h2>Задание</h2> <br><br><p>@Html.DisplayFor(modelItem => item.text)</p>
                         </p>
                         <hr class="hr"/>
 

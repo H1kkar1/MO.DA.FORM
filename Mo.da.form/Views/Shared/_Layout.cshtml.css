@@ -13,7 +13,7 @@
 
 
     #header {
-        width: 100%;
+        width: 114%;
         background: #404040;
         height: 145px;
         border-bottom: 1px solid #fff;
@@ -30,8 +30,8 @@
     }
 
     .top-nav-bar {
-        margin: -125px 0px 0px 720px;
-        max-width: 988px;
+        margin: -125px 0px 0px 550px;
+        max-width: 730px;
     }
 
         .top-nav-bar li {

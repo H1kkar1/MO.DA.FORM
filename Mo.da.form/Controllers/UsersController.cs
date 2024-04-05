@@ -151,7 +151,7 @@ namespace MO.DA.FORM.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect("~/Home/Student");
             }
             return View(user);
         }
