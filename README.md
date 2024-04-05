@@ -8,7 +8,7 @@
 
 ## Скринкаст работы программы
 
-in processing...
+https://youtu.be/19xn5jFbKKk
  
  <br/>
  
